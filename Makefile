@@ -26,7 +26,7 @@ output.txt: all
 all: SimpleLexer.java parser.java $(FILE:java=class)
 
 clean:
-	rm -f class-files/*.class *~ *.bak Yylex.java parser.java sym.java
+	rm -f class-files/*.class *.class *~ *.bak Yylex.java parser.java sym.java
 
 SimpleLexer.java: simple.jflex
 	$(JFLEX) simple.jflex
