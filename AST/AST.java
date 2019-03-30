@@ -5,6 +5,6 @@
  * a common super type for all elements in the AST.                   
  */
 interface AST {
-  public String toString();   // already inherited from Object
+    public String toString();   // already inherited from Object
 }
 

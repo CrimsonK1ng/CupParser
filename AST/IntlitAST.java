@@ -10,7 +10,7 @@ class IntlitAST implements AST {
   }
 
   public String toString() {
-    return(""+String.format("%.0f",number)); 
+    return(this.number.toString()); 
   }
 
 }
