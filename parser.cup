@@ -1,0 +1,153 @@
+import java_cup.runtime.*;
+
+/*
+* Ops 
+*/
+terminal TIMES;
+terminal PLUS;
+terminal MINUS;
+terminal DIVIDE;
+terminal SEMI;
+terminal COMMA;
+terminal UMINUS;
+terminal UPLUS;
+terminal LEFT_PAREN;
+terminal RT_PAREN;
+terminal LEFT_BRKT;
+terminal RT_BRKT;
+terminal LEFT_CURL;
+terminal RT_CURL;
+terminal EQ;
+terminal EQEQ;
+terminal GTR;
+terminal LESS;
+terminal LESS_EQ;
+terminal GTR_EQ;
+terminal NOT_EQ;
+terminal OR;
+terminal AND;
+terminal QUES;
+terminal BNOT;
+
+/*
+* Other 
+*/
+terminal IF;
+terminal FI;
+terminal ELSE;
+terminal FINAL;
+terminal VOID;
+terminal CLASS;
+terminal PRINT;
+terminal RETURN;
+terminal PRINTLINE;
+terminal READ;
+
+/*
+* Types
+*/
+terminal INT;
+terminal FLOAT;
+terminal CHAR;
+terminal BOOL;
+terminal STRING;
+
+/**
+* Literals
+* terminal INTLIT;
+* terminal STRINGLIT;
+* terminal CHARLIT;
+* terminal FLOATLIT;
+* terminal IDENT;
+*/ 
+terminal TRUE;
+terminal FALSE;
+
+/**
+* Terminals that require use to build an AST for
+*/
+terminal String INTLIT;
+terminal String FLOATLIT; 
+terminal String CHARLIT; 
+terminal String STRINGLIT;
+terminal String IDENT;
+
+/**
+ * The following two lines define a dummy non-terminal and grammar rule.  CUP
+ * needs at least one rule to run without errors.
+ */
+
+
+non terminal ProgramAST             prog;
+non terminal MemberdeclsAST         memlist;
+
+non terminal ExprAST                expr;
+non terminal BinaryOp               binop;
+non terminal IntlitAST              int;
+non terminal CharlitAST             char;
+non terminal FloatlitAST            float;
+non terminal StringlitAST           string;
+non terminal IdentAST               ident;
+
+
+precedence left OR;
+precedence left AND;
+precedence left EQEQ, NOT_EQ;
+precedence left GTR, GTR_EQ, LESS, LESS_EQ;
+precedence left MINUS, PLUS;
+precedence left TIMES, DIVIDE;
+
+start with prog;
+
+prog                    ::= CLASS ident:i LEFT_CURL ident:s RT_CURL
+                            {: RESULT = new ProgramAST(i, "BLAH"); :}
+                        ;
+
+
+
+binop                   ::= TIMES
+                            {: RESULT = new BinaryOp("*"); :}
+                        | DIVIDE
+                            {: RESULT = new BinaryOp("*"); :}
+                        | PLUS 
+                            {: RESULT = new BinaryOp("*"); :}
+                        | MINUS 
+                            {: RESULT = new BinaryOp("*"); :}
+                        | LESS 
+                            {: RESULT = new BinaryOp("*"); :}
+                        | GTR
+                            {: RESULT = new BinaryOp("*"); :}
+                        | LESS_EQ
+                            {: RESULT = new BinaryOp("*"); :}
+                        | GTR_EQ
+                            {: RESULT = new BinaryOp("*"); :}
+                        | EQEQ
+                            {: RESULT = new BinaryOp("*"); :}
+                        | NOT_EQ
+                            {: RESULT = new BinaryOp("*"); :}
+                        | OR
+                            {: RESULT = new BinaryOp("*"); :}
+                        | AND
+                            {: RESULT = new BinaryOp("*"); :}
+                        ;
+
+
+int                     ::= INTLIT:i
+                            {: RESULT = new IntlitAST(i); :}
+                        ;
+
+float                   ::= FLOATLIT:i
+                            {: RESULT = new FloatlitAST(i); :}
+                        ;
+
+char                    ::= CHARLIT:i
+                            {: RESULT = new CharlitAST(i); :}
+                        ;
+                            
+string                  ::= STRINGLIT:i
+                            {: RESULT = new StringlitAST(i); :}
+                        ;
+
+ident                   ::= IDENT:i
+                            {: RESULT = new IdentAST(i); :}
+                        ;
