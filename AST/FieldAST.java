@@ -3,10 +3,10 @@ class FieldAST implements AST{
     TypeAST type;
     IdentAST id;
     IntlitAST intlit;
-    String expr;
+    OptionalexprAST expr;
     String tostring;
 
-    public FieldAST(OptionalfinalAST fin, TypeAST type, IdentAST id, String exp){
+    public FieldAST(OptionalfinalAST fin, TypeAST type, IdentAST id, OptionalexprAST exp){
         this._final = fin;
         if (this._final == null){
             this._final= new OptionalfinalAST(false);
@@ -23,6 +23,7 @@ class FieldAST implements AST{
         this.id = id;
         this.intlit = intlit;
 
+        System.out.println(intlit);
         this.tostring = "" + String.format("%s %s [%s];", this.type, this.id, this.intlit.toString());
     }
 

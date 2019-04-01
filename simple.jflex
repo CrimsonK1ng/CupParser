@@ -83,6 +83,7 @@ read            { return newSym(sym.READ, "read"); }
 "-"             { return newSym(sym.MINUS, "-"); }
 "/"             { return newSym(sym.DIVIDE, "/"); }
 ";"             { return newSym(sym.SEMI, ";"); }
+":"             { return newSym(sym.COLON, ":"); }
 ","             { return newSym(sym.COMMA, ","); }
 "("             { return newSym(sym.LEFT_PAREN, "("); }
 ")"             { return newSym(sym.RT_PAREN, ")"); }
@@ -102,10 +103,10 @@ read            { return newSym(sym.READ, "read"); }
 "?"             { return newSym(sym.QUES, "?"); }
 "~"             { return newSym(sym.BNOT, "~"); }
 {identifier}    { return newSym(sym.IDENT, yytext()); }
-{intlit}        { return newSym(sym.INTLIT, new Integer(yytext())); }
-{floatlit}      { return newSym(sym.FLOATLIT, new Float(yytext())); }
-{charlit}       { return newSym(sym.CHARLIT, new Character(yytext().charAt(1)) ); }
-{stringlit}     { return newSym(sym.STRINGLIT, new String(yytext())); }
+{intlit}        { return newSym(sym.INTLIT, yytext()); }
+{floatlit}      { return newSym(sym.FLOATLIT, yytext()); }
+{charlit}       { return newSym(sym.CHARLIT, yytext().charAt(1) ); }
+{stringlit}     { return newSym(sym.STRINGLIT, yytext()); }
 {comment}       { /* Ignore comment line */
                     System.out.println("Comment line: " + yytext()); }
 {commentblock}  { /* Ignore comment line */

@@ -1,13 +1,14 @@
 import java_cup.runtime.*;
 
 /*
-* Ops 
+* Ops
 */
 terminal TIMES;
 terminal PLUS;
 terminal MINUS;
 terminal DIVIDE;
 terminal SEMI;
+terminal COLON;
 terminal COMMA;
 terminal UMINUS;
 terminal UPLUS;
@@ -30,7 +31,7 @@ terminal QUES;
 terminal BNOT;
 
 /*
-* Other 
+* Other
 */
 terminal IF;
 terminal FI;
@@ -59,7 +60,7 @@ terminal STRING;
 * terminal CHARLIT;
 * terminal FLOATLIT;
 * terminal IDENT;
-*/ 
+*/
 terminal TRUE;
 terminal FALSE;
 
@@ -67,8 +68,8 @@ terminal FALSE;
 * Terminals that require use to build an AST for
 */
 terminal String INTLIT;
-terminal String FLOATLIT; 
-terminal String CHARLIT; 
+terminal String FLOATLIT;
+terminal String CHARLIT;
 terminal String STRINGLIT;
 terminal String IDENT;
 
@@ -80,8 +81,30 @@ terminal String IDENT;
 
 non terminal ProgramAST             prog;
 non terminal MemberdeclsAST         memlist;
+non terminal FielddeclsAST          fieldlist;
+non terminal FieldAST               field;
+
+non terminal MethoddeclsAST         methods;
+non terminal MethodAST              meth;
+
+non terminal OptionalfinalAST       fin;
+
+non terminal TypeAST                type;
+
+non terminal ReturntypeAST          returntype;
+
+non terminal OptionalexprAST        optexpr;
+non terminal OptionalsemiAST        optsemi;
 
 non terminal ExprAST                expr;
+non terminal CastexprAST            castexpr;
+non terminal FunctionexprAST        funcexpr;
+non terminal SingleexprAST          singleexpr;
+non terminal UnaryexprAST           unaryexpr;
+non terminal BinaryexprAST          binaryexpr;
+non terminal TernaryexprAST         ternaryexpr;
+
+
 non terminal BinaryOp               binop;
 non terminal IntlitAST              int;
 non terminal CharlitAST             char;
@@ -89,6 +112,7 @@ non terminal FloatlitAST            float;
 non terminal StringlitAST           string;
 non terminal IdentAST               ident;
 
+non terminal NameAST                name;
 
 precedence left OR;
 precedence left AND;
@@ -99,21 +123,144 @@ precedence left TIMES, DIVIDE;
 
 start with prog;
 
-prog                    ::= CLASS ident:i LEFT_CURL ident:s RT_CURL
-                            {: RESULT = new ProgramAST(i, "BLAH"); :}
+prog                    ::= CLASS ident:i LEFT_CURL memlist:m RT_CURL
+                            {: RESULT = new ProgramAST(i, m); :}
+                        ;
+
+memlist                 ::= fieldlist:i methods:m
+                            {: RESULT = new MemberdeclsAST(i, m); :}
+                        ;
+
+fieldlist               ::= field:f fieldlist:fs
+                            {: RESULT = new FielddeclsAST(f, fs); :}
+                        |   {: RESULT = new FielddeclsAST(); :}
+                        ;
+
+field                   ::= FINAL type:t ident:i optexpr:e SEMI
+                            {: RESULT = new FieldAST(new OptionalfinalAST(true), t, i, e); :}
+                        |   type:t ident:i optexpr:e SEMI
+                            {: RESULT = new FieldAST(new OptionalfinalAST(false), t, i, e); :}
+                        |   type:t ident:id LEFT_BRKT int:i RT_BRKT SEMI
+                            {: RESULT = new FieldAST(t, id, i); :}
+                        ;
+
+methods                 ::= meth:m methods:ml
+                            {: RESULT = new MethoddeclsAST(m, ml); :}
+                        |   {: RESULT = new MethoddeclsAST(); :}
+                        ;
+
+meth                    ::= returntype:t ident:i LEFT_PAREN  ident:a RT_PAREN LEFT_CURL  RT_CURL optsemi:semi
+                            {: RESULT = new MethodAST(t, i, semi); :}
+                        ;
+
+returntype              ::= type:t
+                            {: RESULT = new ReturntypeAST(t); :}
+                        |   VOID
+                            {: RESULT = new ReturntypeAST(true); :}
+                        ;
+
+optexpr                 ::= EQ expr:e
+                            {: RESULT = new OptionalexprAST(e); :}
+                        |   {: RESULT = new OptionalexprAST(); :}
+                        ;
+
+optsemi                 ::= SEMI
+                            {: RESULT = new OptionalsemiAST(true); :}
+                        |   {: RESULT = new OptionalsemiAST(false); :}
+                        ;
+
+type                    ::= INT
+                            {: RESULT = new TypeAST("int"); :}
+                        | FLOAT
+                            {: RESULT = new TypeAST("float"); :}
+                        | STRING
+                            {: RESULT = new TypeAST("string"); :}
+                        | CHAR
+                            {: RESULT = new TypeAST("char"); :}
+                        ;
+
+name                    ::= ident:i
+                            {: RESULT = new NameAST(i); :}
+                        |   ident:i LEFT_BRKT expr:e RT_BRKT
+                            {: RESULT = new NameAST(i, e); :}
+                        ;
+
+expr                    ::= funcexpr:f
+                            {: RESULT = new ExprAST(f); :}
+                        | castexpr:f
+                            {: RESULT = new ExprAST(f); :}
+                        | singleexpr:f
+                            {: RESULT = new ExprAST(f); :}
+                        | unaryexpr:f
+                            {: RESULT = new ExprAST(f); :}
+                        | binaryexpr:f
+                            {: RESULT = new ExprAST(f); :}
+                        | ternaryexpr:f
+                            {: RESULT = new ExprAST(f); :}
+                        ;
+
+castexpr                ::= LEFT_PAREN type:t RT_PAREN expr:e
+                            {: RESULT = new CastexprAST(t, e); :}
+                        ;
+
+/*
+* THIS NEEDS ident:a swapped with args
+*/
+
+funcexpr                ::= ident:i LEFT_PAREN RT_PAREN
+                            {: RESULT = new FunctionexprAST(i); :}
+                        |   ident:i LEFT_PAREN ident:a RT_PAREN
+                            {: RESULT = new FunctionexprAST(i, a); :}
+                        ;
+
+/*
+* Not sure if (expr) works well here
+*/
+
+singleexpr              ::= name:n
+                            {: RESULT = new SingleexprAST(n); :}
+                        | int:n
+                            {: RESULT = new SingleexprAST(n); :}
+                        | float:n
+                            {: RESULT = new SingleexprAST(n); :}
+                        | string:n
+                            {: RESULT = new SingleexprAST(n); :}
+                        | char:n
+                            {: RESULT = new SingleexprAST(n); :}
+                        | TRUE
+                            {: RESULT = new SingleexprAST(new BooleanAST(true)); :}
+                        | FALSE
+                            {: RESULT = new SingleexprAST(new BooleanAST(false)); :}
+                        | LEFT_PAREN expr:e RT_PAREN
+                            {: RESULT = new SingleexprAST(e); :}
                         ;
 
 
+unaryexpr               ::= BNOT expr:e
+                            {: RESULT = new UnaryexprAST("~", e); :}
+                        | MINUS expr:e
+                            {: RESULT = new UnaryexprAST("-", e); :}
+                        | PLUS expr:e
+                            {: RESULT = new UnaryexprAST("+", e); :}
+                        ;
+
+binaryexpr              ::= expr:e1 binop:b expr:e2
+                            {: RESULT = new BinaryexprAST(e1, b, e2); :}
+                        ;
+
+ternaryexpr             ::= LEFT_PAREN expr:e1 QUES expr:e2 COLON expr:e3
+                            {: RESULT = new TernaryexprAST(e1, e2, e3); :}
+                        ;
 
 binop                   ::= TIMES
                             {: RESULT = new BinaryOp("*"); :}
                         | DIVIDE
                             {: RESULT = new BinaryOp("*"); :}
-                        | PLUS 
+                        | PLUS
                             {: RESULT = new BinaryOp("*"); :}
-                        | MINUS 
+                        | MINUS
                             {: RESULT = new BinaryOp("*"); :}
-                        | LESS 
+                        | LESS
                             {: RESULT = new BinaryOp("*"); :}
                         | GTR
                             {: RESULT = new BinaryOp("*"); :}
@@ -143,7 +290,7 @@ float                   ::= FLOATLIT:i
 char                    ::= CHARLIT:i
                             {: RESULT = new CharlitAST(i); :}
                         ;
-                            
+
 string                  ::= STRINGLIT:i
                             {: RESULT = new StringlitAST(i); :}
                         ;

@@ -15,7 +15,7 @@ default: test
 
 FILE=	SimpleLexer.java parser.java  sym.java\
 		$(shell find AST -name *AST*) \
-		Main.java  
+		Main.java
 
 run: output.txt
 

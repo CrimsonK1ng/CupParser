@@ -2,16 +2,17 @@
  * AST node for a number
  */ 
 class IntlitAST implements AST {
-  Integer number;
+    Integer number;
 
-  public IntlitAST(String s) {
-    try { number = Integer.parseInt(s); }
-    catch (NumberFormatException e) { number = null; };
-  }
+    public IntlitAST(String s) {
+        try{
+            number = Integer.valueOf(s);
+        } catch (NumberFormatException e) { number=null; }
+    }
 
-  public String toString() {
-    return(this.number.toString()); 
-  }
+    public String toString() {
+        return(this.number.toString()); 
+    }
 
 }
 
