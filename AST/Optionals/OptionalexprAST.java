@@ -1,4 +1,4 @@
-class OptionalexprAST implements AST{
+class OptionalexprAST extends ExprAST implements AST{
     ExprAST expr;
 
     public OptionalexprAST(){

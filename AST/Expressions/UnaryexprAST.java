@@ -1,4 +1,4 @@
-class UnaryexprAST implements AST{
+class UnaryexprAST extends ExprAST implements AST{
     String operator;
     ExprAST expr;
 

@@ -11,7 +11,16 @@ default: test
 .SUFFIXES: $(SUFFIXES) .class .java
 
 .java.class:
-	$(JAVAC) -cp $(CP) $(wildcard *java) $(wildcard AST/*)  -d class-files
+	$(JAVAC) -cp $(CP) $(wildcard *java) \
+	$(wildcard AST/*java) \
+	$(wildcard AST/Arg/*java) \
+	$(wildcard AST/Expressions/*java)  \
+	$(wildcard AST/Ifs/*java) \
+	$(wildcard AST/Literals/*java) \
+	$(wildcard AST/Optionals/*java) \
+	$(wildcard AST/Name/*java) \
+	$(wildcard AST/Simplestatements/*java) \
+	-d class-files
 
 FILE=	SimpleLexer.java parser.java  sym.java\
 		$(shell find AST -name *AST*) \

@@ -1,4 +1,4 @@
-class BinaryexprAST implements AST{
+class BinaryexprAST extends ExprAST implements AST{
     BinaryOp binop;
     ExprAST left;
     ExprAST right;
@@ -7,7 +7,7 @@ class BinaryexprAST implements AST{
         this.binop = b;
         this.left = left;
         this.right = right;
-        
+
     }
 
     public String toString(){

@@ -1,13 +1,13 @@
 class MethoddeclsAST extends SimpleMethods implements AST{
+    ReturntypeAST returns;
+    IdentAST ident;
     MethodAST method;
     MethoddeclsAST other_method;
+    public MethoddeclsAST(){}
 
-    public MethoddeclsAST(){
-        this.method = null;
-        this.other_method = null;
-    }
-
-    public MethoddeclsAST (MethodAST method, MethoddeclsAST other){
+    public MethoddeclsAST (ReturntypeAST ret, IdentAST id, MethodAST method, MethoddeclsAST other){
+        this.returns = ret;
+        this.ident = id;
         this.method = method;
         this.other_method = other;
     }
@@ -15,13 +15,14 @@ class MethoddeclsAST extends SimpleMethods implements AST{
     public String toString(){
         if(this.method == null || this.other_method == null)
             return "";
-        return "" + String.format("%s\n%s", this.method, this.other_method);
+        return("" + String.format("%s %s %s\n%s", this.returns, this.ident, this.method, this.other_method));
+
     }
 
     public String toString(int indent){
-        if(this.method == null || this.other_method == null)
+        if(this.other_method == null)
             return "";
 
-        return getBase(indent) + String.format("%s\n%s", this.method, this.other_method.toString(indent));
+        return(getBase(indent) + String.format("%s %s %s\n%s", this.returns, this.ident, this.method.toString(indent), this.other_method.toString(indent)));
     }
 }

@@ -1,30 +1,26 @@
 
 class MethodAST extends SimpleMethods implements AST{
-    ReturntypeAST ret;
-    IdentAST id;
-    String args;
-    FielddeclsAST field_list;
-    IdentAST statements;
+    ArgdeclsAST arglist;
     OptionalsemiAST semi;
-    public MethodAST(ReturntypeAST ret, IdentAST id, String args, FielddeclsAST fields, IdentAST states, OptionalsemiAST sem){
-        this.ret = ret;
-        this.id = id;
-        this.args = args;
-        this.field_list = fields;
-        this.statements = states;
+    FielddeclsAST fields;
+    StatementlistAST statelist;
+    public MethodAST(ArgdeclsAST arglist, FielddeclsAST fields, StatementlistAST sl, OptionalsemiAST sem){
         this.semi = sem;
-    }
-
-    public MethodAST(ReturntypeAST ret, IdentAST id, OptionalsemiAST sem){
-        this.ret = ret;
-        this.id = id;
-        this.args = null;
-        this.field_list = null;
-        this.statements = null;
-        this.semi = sem;
+        this.arglist = arglist;
+        this.fields = fields;
+        this.statelist = sl;
     }
 
     public String toString(){
-        return "" + String.format("%s %s ( %s ) {\n %s %s \n} %s", this.ret, this.id, this.args, this.field_list, this.statements, this.semi);
+        return("" + String.format("( %s ) { %s %s }%s", this.arglist, this.fields, this.statelist,  this.semi));
+    }
+
+    public String toString(int indent){
+        return(""
+                + String.format("( %s ) {\n", this.arglist)
+                + String.format("%s", this.fields.toString(indent+1))
+                + String.format("%s", this.statelist.toString(indent+1))
+                + getBase(indent) + String.format("}%s",this.semi)
+                );
     }
 }

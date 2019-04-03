@@ -1,4 +1,4 @@
-class BooleanAST implements AST{
+class BooleanAST extends ExpressionLiterals implements AST{
     boolean is;
 
     public BooleanAST(boolean b){
@@ -8,7 +8,7 @@ class BooleanAST implements AST{
     public String toString(){
         if(this.is){
             return "true";
-        } else { 
+        } else {
             return "false";
         }
     }

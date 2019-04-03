@@ -1,5 +1,7 @@
 class ExprAST implements AST{
     AST expr;
+    int indent;
+    public ExprAST(){}
 
     public ExprAST(AST expr){
         this.expr = expr;

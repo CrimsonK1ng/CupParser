@@ -34,14 +34,14 @@ Symbol newSym(int tokenId, Object value) {
 }
 
 public void syntax_error(Symbol s){
-    System.out.println("compiler has detected a syntax error at line " + s.left 
+    System.out.println("compiler has detected a syntax error at line " + s.left
         + " column " + s.right);
 }
 
 %}
 
-/* 
-*Comment 
+/*
+*Comment
 */
 lineterminator      = \r|\n|\r\n
 whitespace          = [ \n\t]
@@ -59,8 +59,8 @@ identifier          = [a-zA-Z]{alphanumeric}*
 
 
 %%
-/* 
-*Keywords 
+/*
+*Keywords
 */
 class           { return newSym(sym.CLASS, "class"); }
 final           { return newSym(sym.FINAL, "final"); }
@@ -74,13 +74,16 @@ char            { return newSym(sym.CHAR, "char"); }
 string          { return newSym(sym.STRING, "string"); }
 else            { return newSym(sym.ELSE, "else"); }
 if              { return newSym(sym.IF, "if"); }
+while           { return newSym(sym.WHILE, "while"); }
 print           { return newSym(sym.PRINT, "print"); }
 return          { return newSym(sym.RETURN, "return"); }
 printline       { return newSym(sym.PRINTLINE, "printline"); }
 read            { return newSym(sym.READ, "read"); }
 "*"             { return newSym(sym.TIMES, "*"); }
+"++"            { return newSym(sym.PLUSPLUS, "++"); }
 "+"             { return newSym(sym.PLUS, "+"); }
 "-"             { return newSym(sym.MINUS, "-"); }
+"--"            { return newSym(sym.MINUSMINUS, "--"); }
 "/"             { return newSym(sym.DIVIDE, "/"); }
 ";"             { return newSym(sym.SEMI, ";"); }
 ":"             { return newSym(sym.COLON, ":"); }
@@ -98,6 +101,7 @@ read            { return newSym(sym.READ, "read"); }
 "<="            { return newSym(sym.LESS_EQ, "<="); }
 ">="            { return newSym(sym.GTR_EQ, ">="); }
 "<>"            { return newSym(sym.NOT_EQ, "<>"); }
+"\""            { return newSym(sym.QUOTE, "\""); }
 "||"            { return newSym(sym.OR, "||"); }
 "&&"            { return newSym(sym.AND, "&&"); }
 "?"             { return newSym(sym.QUES, "?"); }

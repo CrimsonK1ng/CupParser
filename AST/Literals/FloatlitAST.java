@@ -1,7 +1,7 @@
 /**
  * AST node for a number
- */ 
-class FloatlitAST implements AST {
+ */
+class FloatlitAST  extends ExpressionLiterals implements AST {
   Float number;
 
   public FloatlitAST(String s) {
@@ -10,8 +10,7 @@ class FloatlitAST implements AST {
   }
 
   public String toString() {
-    return(""+String.format("%.2f",number)); 
+    return(""+String.format("%.2f",number));
   }
 
 }
-

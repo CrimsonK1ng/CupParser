@@ -1,7 +1,7 @@
 /**
  * AST node for a number
- */ 
-class StringlitAST implements AST {
+ */
+class StringlitAST  extends ExpressionLiterals implements AST {
     String s;
 
     public StringlitAST(String s) {
@@ -9,8 +9,7 @@ class StringlitAST implements AST {
     }
 
     public String toString() {
-        return(""+String.format("%s", this.s)); 
+        return(""+String.format("%s", this.s));
     }
 
 }
-

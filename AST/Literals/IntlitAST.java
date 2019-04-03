@@ -1,7 +1,7 @@
 /**
  * AST node for a number
- */ 
-class IntlitAST implements AST {
+ */
+class IntlitAST  extends ExpressionLiterals implements AST {
     Integer number;
 
     public IntlitAST(String s) {
@@ -11,8 +11,7 @@ class IntlitAST implements AST {
     }
 
     public String toString() {
-        return(this.number.toString()); 
+        return(this.number.toString());
     }
 
 }
-

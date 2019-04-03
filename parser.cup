@@ -5,7 +5,9 @@ import java_cup.runtime.*;
 */
 terminal TIMES;
 terminal PLUS;
+terminal PLUSPLUS;
 terminal MINUS;
+terminal MINUSMINUS;
 terminal DIVIDE;
 terminal SEMI;
 terminal COLON;
@@ -25,6 +27,7 @@ terminal LESS;
 terminal LESS_EQ;
 terminal GTR_EQ;
 terminal NOT_EQ;
+terminal QUOTE;
 terminal OR;
 terminal AND;
 terminal QUES;
@@ -34,6 +37,7 @@ terminal BNOT;
 * Other
 */
 terminal IF;
+terminal WHILE;
 terminal FI;
 terminal ELSE;
 terminal FINAL;
@@ -87,15 +91,34 @@ non terminal FieldAST               field;
 non terminal MethoddeclsAST         methods;
 non terminal MethodAST              meth;
 
-non terminal OptionalfinalAST       fin;
+non terminal ArgdeclsAST            arglist;
+non terminal ArgAST                 arg;
 
 non terminal TypeAST                type;
 
 non terminal ReturntypeAST          returntype;
 
+non terminal ParameterArgsAST       paramargs;
+
+non terminal ReadlistAST            readlist;
+
+non terminal PrintlistAST           printlist;
+
+/* If-else stuff */
+non terminal StatementlistAST       statelist;
+non terminal StatementAST           statement;
+non terminal OpenstateAST           open;
+non terminal ClosedstateAST         closed;
+non terminal SimplestateAST         simple;
+
+/* Optional stuff */
 non terminal OptionalexprAST        optexpr;
 non terminal OptionalsemiAST        optsemi;
+non terminal OptionalfinalAST       optfin;
+non terminal OptionalcommaAST       optcomma;
 
+
+/* All the dang expression */
 non terminal ExprAST                expr;
 non terminal CastexprAST            castexpr;
 non terminal FunctionexprAST        funcexpr;
@@ -104,6 +127,8 @@ non terminal UnaryexprAST           unaryexpr;
 non terminal BinaryexprAST          binaryexpr;
 non terminal TernaryexprAST         ternaryexpr;
 
+
+non terminal LiteralAST             literal;
 
 non terminal BinaryOp               binop;
 non terminal IntlitAST              int;
@@ -131,26 +156,104 @@ memlist                 ::= fieldlist:i methods:m
                             {: RESULT = new MemberdeclsAST(i, m); :}
                         ;
 
-fieldlist               ::= field:f fieldlist:fs
-                            {: RESULT = new FielddeclsAST(f, fs); :}
+fieldlist               ::= fieldlist:fs FINAL type:t ident:i  field:f
+                            {: RESULT = new FielddeclsAST(new OptionalfinalAST(true), t, i, f, fs); :}
+                        |   fieldlist:fs type:t ident:i  field:f
+                            {: RESULT = new FielddeclsAST(new OptionalfinalAST(false), t, i, f, fs); :}
                         |   {: RESULT = new FielddeclsAST(); :}
                         ;
 
-field                   ::= FINAL type:t ident:i optexpr:e SEMI
-                            {: RESULT = new FieldAST(new OptionalfinalAST(true), t, i, e); :}
-                        |   type:t ident:i optexpr:e SEMI
-                            {: RESULT = new FieldAST(new OptionalfinalAST(false), t, i, e); :}
-                        |   type:t ident:id LEFT_BRKT int:i RT_BRKT SEMI
-                            {: RESULT = new FieldAST(t, id, i); :}
+field                   ::= optexpr:e SEMI
+                            {: RESULT = new FieldAST(e); :}
+                        |   LEFT_BRKT int:i RT_BRKT SEMI
+                            {: RESULT = new FieldAST(i); :}
                         ;
 
-methods                 ::= meth:m methods:ml
-                            {: RESULT = new MethoddeclsAST(m, ml); :}
+methods                 ::= type:t ident:i meth:m methods:ml
+                            {: RESULT = new MethoddeclsAST(new ReturntypeAST(t), i, m, ml); :}
+                        |   VOID ident:i meth:m methods:ml
+                            {: RESULT = new MethoddeclsAST(new ReturntypeAST(true), i, m, ml); :}
                         |   {: RESULT = new MethoddeclsAST(); :}
                         ;
 
-meth                    ::= returntype:t ident:i LEFT_PAREN  ident:a RT_PAREN LEFT_CURL  RT_CURL optsemi:semi
-                            {: RESULT = new MethodAST(t, i, semi); :}
+meth                    ::= LEFT_PAREN  arglist:a RT_PAREN LEFT_CURL fieldlist:fl statelist:sl RT_CURL optsemi:semi
+                            {: RESULT = new MethodAST(a,fl, sl, semi); :}
+                        ;
+
+arglist                 ::= type:t ident:i optcomma:c arglist:al
+                            {: RESULT = new ArgdeclsAST(new ArgAST(t,i), al, c); :}
+                        |   type:t ident:i LEFT_BRKT RT_BRKT optcomma:c arglist:al
+                            {: RESULT = new ArgdeclsAST(new ArgarrayAST(t,i), al, c); :}
+                        |   {: RESULT = new ArgdeclsAST(); :}
+                        ;
+
+statelist               ::= statement:s statelist:sl
+                            {: RESULT = new StatementlistAST(s, sl); :}
+                        |   {: RESULT = new StatementlistAST(); :}
+                        ;
+
+statement               ::= open:o
+                            {: RESULT = new StatementAST(o); :}
+                        |   closed:c
+                            {: RESULT = new StatementAST(c); :}
+                        ;
+
+
+open                    ::= IF LEFT_PAREN expr:e RT_PAREN statement:s
+                            {: RESULT = new IfOpenstateAST(e, s); :}
+                        |   IF LEFT_PAREN expr:e RT_PAREN closed:c ELSE open:o
+                            {: RESULT = new IfOpenStateCloseOpenAST(e, c, o); :}
+                        |   WHILE LEFT_PAREN expr:e RT_PAREN open:o
+                            {: RESULT = new WhileopenstateAST(e, o); :}
+                        ;
+
+closed                  ::= simple:s
+                            {: RESULT = new ClosedstateAST(s); :}
+                        |   IF LEFT_PAREN expr:e RT_PAREN closed:c ELSE closed:c2
+                            {: RESULT = new IfClosedAST(e, c, c2); :}
+                        |   WHILE LEFT_PAREN expr:e RT_PAREN closed:c
+                            {: RESULT = new WhileclosedAST(e,c); :}
+                        ;
+simple                  ::= name:n EQ expr:e SEMI
+                            {: RESULT = new SimpleAssignAST(n, e); :}
+                        |   READ LEFT_PAREN readlist:r RT_PAREN SEMI
+                            {: RESULT = new SimpleReadlistAST(r); :}
+                        |   PRINT LEFT_PAREN printlist:p RT_PAREN SEMI
+                            {: RESULT = new SimplePrintlistAST(p); :}
+                        |   PRINTLINE LEFT_PAREN RT_PAREN SEMI
+                            {: RESULT = new SimplePrintlineAST(); :}
+                        |   LEFT_CURL fieldlist:f statelist:sl RT_CURL optsemi:s
+                            {: RESULT = new SimpleBodyAST(f, sl, s); :}
+                        |   ident:i LEFT_PAREN RT_PAREN SEMI
+                            {: RESULT = new SimpleFunctionAST(i); :}
+                        |   ident:i LEFT_PAREN paramargs:p RT_PAREN SEMI
+                            {: RESULT = new SimpleFunctionArgsAST(i, p); :}
+                        |   RETURN SEMI
+                            {: RESULT = new ReturnsimpleAST(); :}
+                        |   RETURN expr:e SEMI
+                            {: RESULT = new ReturnSimpleExprAST(e); :}
+                        |   name:n PLUSPLUS SEMI
+                            {: RESULT = new SimpleNameAST(n,true); :}
+                        |   name:n MINUSMINUS SEMI
+                            {: RESULT = new SimpleNameAST(n,false); :}
+                        ;
+
+paramargs               ::= expr:e COMMA paramargs:p
+                            {: RESULT = new ParameterArgsAST(e,p); :}
+                        |   expr:e
+                            {: RESULT = new ParameterArgsAST(e); :}
+                        ;
+
+readlist                ::= name:n COMMA readlist:r
+                            {: RESULT = new ReadlistAST(n, r); :}
+                        |   name:n
+                            {: RESULT = new ReadlistAST(n); :}
+                        ;
+
+printlist               ::= expr:n COMMA printlist:p
+                            {: RESULT = new PrintlistAST(n, p); :}
+                        |   expr:n
+                            {: RESULT = new PrintlistAST(n); :}
                         ;
 
 returntype              ::= type:t
@@ -169,6 +272,11 @@ optsemi                 ::= SEMI
                         |   {: RESULT = new OptionalsemiAST(false); :}
                         ;
 
+optcomma                ::= COMMA
+                            {: RESULT = new OptionalcommaAST(true); :}
+                        |   {: RESULT = new OptionalcommaAST(false); :}
+                        ;
+
 type                    ::= INT
                             {: RESULT = new TypeAST("int"); :}
                         | FLOAT
@@ -182,21 +290,21 @@ type                    ::= INT
 name                    ::= ident:i
                             {: RESULT = new NameAST(i); :}
                         |   ident:i LEFT_BRKT expr:e RT_BRKT
-                            {: RESULT = new NameAST(i, e); :}
+                            {: RESULT = new NamearrayAST(i, e); :}
                         ;
 
 expr                    ::= funcexpr:f
-                            {: RESULT = new ExprAST(f); :}
+                            {: RESULT = f; :}
                         | castexpr:f
-                            {: RESULT = new ExprAST(f); :}
+                            {: RESULT = f; :}
                         | singleexpr:f
-                            {: RESULT = new ExprAST(f); :}
+                            {: RESULT = f; :}
                         | unaryexpr:f
-                            {: RESULT = new ExprAST(f); :}
+                            {: RESULT = f; :}
                         | binaryexpr:f
-                            {: RESULT = new ExprAST(f); :}
+                            {: RESULT = f; :}
                         | ternaryexpr:f
-                            {: RESULT = new ExprAST(f); :}
+                            {: RESULT = f; :}
                         ;
 
 castexpr                ::= LEFT_PAREN type:t RT_PAREN expr:e
@@ -204,12 +312,12 @@ castexpr                ::= LEFT_PAREN type:t RT_PAREN expr:e
                         ;
 
 /*
-* THIS NEEDS ident:a swapped with args
+* TODO THIS NEEDS ident:a swapped with args
 */
 
 funcexpr                ::= ident:i LEFT_PAREN RT_PAREN
                             {: RESULT = new FunctionexprAST(i); :}
-                        |   ident:i LEFT_PAREN ident:a RT_PAREN
+                        |   ident:i LEFT_PAREN paramargs:a RT_PAREN
                             {: RESULT = new FunctionexprAST(i, a); :}
                         ;
 
@@ -232,7 +340,7 @@ singleexpr              ::= name:n
                         | FALSE
                             {: RESULT = new SingleexprAST(new BooleanAST(false)); :}
                         | LEFT_PAREN expr:e RT_PAREN
-                            {: RESULT = new SingleexprAST(e); :}
+                            {: RESULT = new SingleQuotedExprAST(e); :}
                         ;
 
 
@@ -248,32 +356,32 @@ binaryexpr              ::= expr:e1 binop:b expr:e2
                             {: RESULT = new BinaryexprAST(e1, b, e2); :}
                         ;
 
-ternaryexpr             ::= LEFT_PAREN expr:e1 QUES expr:e2 COLON expr:e3
+ternaryexpr             ::= LEFT_PAREN expr:e1 QUES expr:e2 COLON expr:e3 RT_PAREN
                             {: RESULT = new TernaryexprAST(e1, e2, e3); :}
                         ;
 
 binop                   ::= TIMES
                             {: RESULT = new BinaryOp("*"); :}
                         | DIVIDE
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("/"); :}
                         | PLUS
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("+"); :}
                         | MINUS
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("-"); :}
                         | LESS
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("<"); :}
                         | GTR
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp(">"); :}
                         | LESS_EQ
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("<="); :}
                         | GTR_EQ
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp(">="); :}
                         | EQEQ
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("=="); :}
                         | NOT_EQ
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("<>"); :}
                         | OR
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("||"); :}
                         | AND
                             {: RESULT = new BinaryOp("*"); :}
                         ;

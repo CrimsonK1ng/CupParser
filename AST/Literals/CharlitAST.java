@@ -1,7 +1,7 @@
 /**
  * AST node for a number
- */ 
-class CharlitAST implements AST {
+ */
+class CharlitAST extends ExpressionLiterals implements AST {
     char ch;
 
     public CharlitAST(String ch) {
@@ -11,8 +11,7 @@ class CharlitAST implements AST {
     }
 
     public String toString() {
-        return(""+String.format("%s", this.ch)); 
+        return(""+String.format("%s", this.ch));
     }
 
 }
-

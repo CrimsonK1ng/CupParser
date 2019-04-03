@@ -1,16 +1,16 @@
 
-class FunctionexprAST implements AST{
+class FunctionexprAST extends ExprAST implements AST{
     IdentAST id;
-    IdentAST args; //need to make Args
+    ParameterArgsAST args; //need to make Args
 
     public FunctionexprAST(IdentAST id){
         this.id= id;
     }
 
-    public FunctionexprAST(IdentAST id, IdentAST args){
+    public FunctionexprAST(IdentAST id, ParameterArgsAST args){
         this.id= id;
         this.args= args;
-        
+
     }
 
     public String toString(){

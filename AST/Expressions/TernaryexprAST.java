@@ -1,5 +1,5 @@
 
-class TernaryexprAST implements AST{
+class TernaryexprAST extends ExprAST implements AST{
     ExprAST expr1;
     ExprAST true_expr;
     ExprAST false_expr;
