@@ -8,7 +8,7 @@ class WhileclosedAST extends ClosedstateAST implements AST{
     }
 
     public String toString(int indent){
-        return(getBase(indent) + String.format("WHILE ( %s )\n", this.expr)
+        return(getBase(indent) + String.format("while ( %s )\n", this.expr)
                 + String.format("%s", this.close.toString(indent+1)));
     }
 }

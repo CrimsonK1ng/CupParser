@@ -1,0 +1,9 @@
+class program {
+    int test1(int j[]){
+        if( 1 < 2){if ( 10 * 3)
+                a = c;
+            if ( ~c ){              and = "so";
+            } else              dank = true;
+        }
+    }
+}

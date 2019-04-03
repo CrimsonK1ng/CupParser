@@ -31,8 +31,8 @@ class FielddeclsAST extends SimpleMethods implements AST{
         if(this.field_decls == null){
             return "";
         }
-
-        return(getBase(indent) + String.format("%s%s %s %s\n%s", this.fin, this.type, this.ident, this.field, this.field_decls.toString(indent)));
+        return("" + String.format("%s", this.field_decls.toString(indent))
+                + getBase(indent) + String.format("%s%s %s %s\n", this.fin, this.type, this.ident, this.field));
 
     }
 }

@@ -7,7 +7,7 @@ class FieldAST implements AST{
 
     public String toString(){
 
-        return ("" + String.format("%s", this.ast));
+        return ("" + String.format("%s;", this.ast));
 
     }
 }

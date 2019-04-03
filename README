@@ -1,0 +1,15 @@
+# Compiler submission
+To run tests simply execute ```make```. This will run all the tests that have been added to the project.
+
+## AST 
+folder will contain all Java classes for use with the following files:
+    * parser.cup
+    * Simplelexer.java
+    * simple.jflex
+
+## Gold files
+Test files are found under the following directories:
+    * tests (test files to run against)
+    * test_generated (generated files form parser)
+    * gold (the true results)
+

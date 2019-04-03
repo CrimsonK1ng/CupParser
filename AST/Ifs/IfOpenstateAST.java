@@ -16,10 +16,10 @@ class IfOpenstateAST extends OpenstateAST implements AST{
 
     public String toString(int indent){
         if(this.open != null){
-            return(getBase(indent) + String.format("IF ( %s )\n%s", this.expr, this.open.toString(indent+1)));
+            return(getBase(indent) + String.format("if ( %s )\n%s", this.expr, this.open.toString(indent+1)));
         }
         else if(this.state!= null){
-            return(getBase(indent)+ String.format("IF ( %s )\n%s", this.expr, this.state.toString(indent+1)));
+            return(getBase(indent)+ String.format("if ( %s )\n%s", this.expr, this.state.toString(indent+1)));
         }
         return "UH OH";
     }

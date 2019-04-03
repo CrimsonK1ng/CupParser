@@ -1,0 +1,14 @@
+class Another{
+    int main(int i, int j, string k, char c){
+        if ( (i < j) && (k < c))balognia = "balogne";else makeda = "money";
+
+        while(true){
+            int i = 2340;
+if(i){b = c;
+if(b)
+    jk();} else {
+if(another){
+    return true;
+} else {
+                 whoamygodthenesting = "AHHHHH";
+}}}}}

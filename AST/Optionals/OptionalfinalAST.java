@@ -7,7 +7,7 @@ class OptionalfinalAST implements AST{
 
     public String toString(){
         if (this.isfinal){
-            return "final";
+            return "final ";
         } else {
             return "";
         }

@@ -28,9 +28,20 @@ FILE=	SimpleLexer.java parser.java  sym.java\
 
 run: output.txt
 
-output.txt: all
-	$(JAVA) -cp $(CP) Main < example.as > output.txt
-	cat output.txt
+test1:
+	$(JAVA) -cp $(CP) Main < tests/test1.txt > test_generated/test1.txt
+
+test2:
+	$(JAVA) -cp $(CP) Main < tests/test2.txt > test_generated/test2.txt
+	cat test_generated/test2.txt
+
+test3:
+	$(JAVA) -cp $(CP) Main < tests/test3.txt > test_generated/test3.txt
+	cat test_generated/test3.txt
+
+test4:
+	$(JAVA) -cp $(CP) Main < tests/test4.txt > test_generated/test4.txt
+	cat test_generated/test4.txt
 
 all: SimpleLexer.java parser.java $(FILE:java=class)
 
@@ -43,5 +54,8 @@ SimpleLexer.java: simple.jflex
 parser.java: parser.cup
 	$(CUP) -interface -dump < parser.cup
 
-test: output.txt
-	@(diff output.txt output.good && echo "Test OK!") || echo "Test failed!"
+test: all test1 test2 test3 test4
+	@(diff test_generated/test1.txt gold/test1.gold && echo "[Test 1]\t\tTest OK!") || echo "Test failed!"
+	@(diff test_generated/test2.txt gold/test2.gold && echo "[Test 2]\t\tTest OK!") || echo "Test failed!"
+	@(diff test_generated/test3.txt gold/test3.gold && echo "[Test 3]\t\tTest OK!") || echo "Test failed!"
+	@(diff test_generated/test4.txt gold/test4.gold && echo "[Test 3]\t\tTest OK!") || echo "Test failed!"

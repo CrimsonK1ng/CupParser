@@ -1,0 +1,12 @@
+class program {
+	int i = 0;
+	float j = "another";
+	int main (  ) {
+		return;
+	}
+	void jk ( int i, string s, float f  ) {
+		int i = 1 + 2;
+		float f = 23.03;
+		j = f * i;
+	}
+}
