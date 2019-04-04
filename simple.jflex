@@ -53,7 +53,7 @@ letter              = [A-Za-z]
 alphanumeric        = {letter}|{digit}
 intlit              = {digit}+
 charlit             = \'([^\'\\]|\\\'|\\\\)\'
-stringlit           = \"(.[^\"]*)\"
+stringlit           = \"[^\"]*\"
 floatlit            = {digit}+\.{digit}+
 identifier          = [a-zA-Z]{alphanumeric}*
 
