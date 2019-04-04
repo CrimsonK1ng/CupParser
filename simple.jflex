@@ -53,11 +53,11 @@ letter              = [A-Za-z]
 alphanumeric        = {letter}|{digit}
 intlit              = {digit}+
 charlit             = \'([^\'\\]|\\\'|\\\\)\'
-stringlit           = \"(.*?|\\\'|\\\"|\\\,|\\\\|\\t|\\n|[  ])*\"+
+stringlit           = \"(.[^\"]*)\"
 floatlit            = {digit}+\.{digit}+
 identifier          = [a-zA-Z]{alphanumeric}*
 
-
+%state STRING
 %%
 /*
 *Keywords
@@ -109,8 +109,8 @@ read            { return newSym(sym.READ, "read"); }
 {identifier}    { return newSym(sym.IDENT, yytext()); }
 {intlit}        { return newSym(sym.INTLIT, yytext()); }
 {floatlit}      { return newSym(sym.FLOATLIT, yytext()); }
+{stringlit}      { return newSym(sym.STRINGLIT, yytext()); }
 {charlit}       { return newSym(sym.CHARLIT, yytext().charAt(1) ); }
-{stringlit}     { return newSym(sym.STRINGLIT, yytext()); }
 {comment}       { /* Ignore comment line */
                     System.out.println("Comment line: " + yytext()); }
 {commentblock}  { /* Ignore comment line */

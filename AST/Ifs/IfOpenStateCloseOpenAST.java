@@ -12,7 +12,7 @@ class IfOpenStateCloseOpenAST extends OpenstateAST{
     public String toString(int indent){
         return(getBase(indent) + String.format("if ( %s )\n", this.expr)
                 + String.format("%s\n", this.closed.toString(indent+1))
-                + getBase(indent) + "if\n"
+                + getBase(indent) + "else\n"
                 + String.format("%s", this.open.toString(indent+1)));
     }
 }
