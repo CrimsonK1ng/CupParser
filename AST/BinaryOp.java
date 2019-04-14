@@ -1,6 +1,6 @@
 /**
  * AST node for a number
- */ 
+ */
 class BinaryOp implements AST {
     String op;
 
@@ -8,13 +8,16 @@ class BinaryOp implements AST {
         this.op = s;
     }
 
-    public String toString(int indent) {
-        return(""+String.format("%s",this.op)); 
+    public void accept(Visitor v){
+        v.visit(this);
     }
-    
+
+    public String toString(int indent) {
+        return(""+String.format("%s",this.op));
+    }
+
     public String toString() {
-        return(""+String.format("%s",this.op)); 
+        return(""+String.format("%s",this.op));
     }
 
 }
-

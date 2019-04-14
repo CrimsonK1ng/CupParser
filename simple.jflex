@@ -71,7 +71,6 @@ bool            { return newSym(sym.BOOL, "bool"); }
 int             { return newSym(sym.INT, "int"); }
 float           { return newSym(sym.FLOAT, "float"); }
 char            { return newSym(sym.CHAR, "char"); }
-string          { return newSym(sym.STRING, "string"); }
 else            { return newSym(sym.ELSE, "else"); }
 if              { return newSym(sym.IF, "if"); }
 while           { return newSym(sym.WHILE, "while"); }
@@ -80,10 +79,10 @@ return          { return newSym(sym.RETURN, "return"); }
 printline       { return newSym(sym.PRINTLINE, "printline"); }
 read            { return newSym(sym.READ, "read"); }
 "*"             { return newSym(sym.TIMES, "*"); }
-"++"            { return newSym(sym.PLUSPLUS, "++"); }
 "+"             { return newSym(sym.PLUS, "+"); }
 "-"             { return newSym(sym.MINUS, "-"); }
-"--"            { return newSym(sym.MINUSMINUS, "--"); }
+"--"            { return newSym(sym.MINUSMINUS, "-"); }
+"++"            { return newSym(sym.PLUSPLUS, "-"); }
 "/"             { return newSym(sym.DIVIDE, "/"); }
 ";"             { return newSym(sym.SEMI, ";"); }
 ":"             { return newSym(sym.COLON, ":"); }

@@ -5,6 +5,11 @@ class OptionalcommaAST implements AST{
         this.iscomma = t;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString(){
         if(this.iscomma){
             return "";

@@ -8,6 +8,13 @@ class CastexprAST extends ExprAST implements AST{
 
     }
 
+    public void accept(Visitor v){
+        this.type.accept(v);
+        this.expr.accept(v);
+        v.visit(this);
+    }
+
+
     public String toString(){
         return("" + String.format("(%s) %s", type, expr));
     }

@@ -6,7 +6,7 @@ CUPJAR=java-cup-11b.jar
 CUP=$(JAVA) -jar $(CUPJAR)
 CP=.:$(CUPJAR):class-files
 
-default: test
+default: all test2
 
 .SUFFIXES: $(SUFFIXES) .class .java
 
@@ -17,9 +17,14 @@ default: test
 	$(wildcard AST/Expressions/*java)  \
 	$(wildcard AST/Ifs/*java) \
 	$(wildcard AST/Literals/*java) \
+	$(wildcard AST/Fields/*java) \
 	$(wildcard AST/Optionals/*java) \
 	$(wildcard AST/Name/*java) \
 	$(wildcard AST/Simplestatements/*java) \
+	$(wildcard SYM/Visitor/*java) \
+	$(wildcard SYM/Entries/*java) \
+	$(wildcard SYM/Types/*java) \
+	$(wildcard SYM/*java) \
 	-d class-files
 
 FILE=	SimpleLexer.java parser.java  sym.java\

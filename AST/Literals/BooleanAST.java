@@ -5,6 +5,11 @@ class BooleanAST extends ExpressionLiterals implements AST{
         this.is = b;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString(){
         if(this.is){
             return "true";

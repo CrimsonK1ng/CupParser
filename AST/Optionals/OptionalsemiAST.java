@@ -5,6 +5,11 @@ class OptionalsemiAST implements AST{
         semi = isSemi;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString(){
         if (semi){
             return ";";

@@ -6,4 +6,5 @@
  */
 interface AST {
     public String toString();   // already inherited from Object
+    public void accept(Visitor v);
 }

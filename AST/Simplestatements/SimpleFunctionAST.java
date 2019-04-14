@@ -5,6 +5,12 @@ class SimpleFunctionAST extends SimplestateAST implements AST{
         this.id = id;
     }
 
+
+    public void accept(Visitor v){
+        this.id.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         return("" + String.format("%s ( );", this.id));
     }

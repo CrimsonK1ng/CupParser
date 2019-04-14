@@ -8,6 +8,13 @@ class ArgAST implements AST{
         this.type = type;
         this.id = id;
     }
+
+    public void accept(Visitor v){
+        this.type.accept(v);
+        this.id.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         return("" + String.format("%s %s", this.type, this.id));
     }

@@ -1,10 +1,15 @@
 class ExprAST implements AST{
-    AST expr;
-    int indent;
+    ExprAST expr;
     public ExprAST(){}
 
-    public ExprAST(AST expr){
+    public ExprAST(ExprAST expr){
         this.expr = expr;
+    }
+
+
+    public void accept(Visitor v){
+        this.expr.accept(v);
+        v.visit(this);
     }
 
 

@@ -12,6 +12,14 @@ class ReadlistAST implements AST{
         this.read = read;
     }
 
+
+    public void accept(Visitor v){
+        this.name.accept(v);
+        if(this.read != null)
+            this.read.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         if (this.read != null){
             return("" + String.format("%s, %s", this.name, this.read));

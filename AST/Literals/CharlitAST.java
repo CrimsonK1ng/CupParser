@@ -10,6 +10,11 @@ class CharlitAST extends ExpressionLiterals implements AST {
         }
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString() {
         return(""+String.format("%s", this.ch));
     }

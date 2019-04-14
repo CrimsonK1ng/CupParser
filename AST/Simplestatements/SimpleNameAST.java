@@ -6,6 +6,12 @@ class SimpleNameAST extends SimplestateAST implements AST{
         this.plusplus = b;
     }
 
+
+    public void accept(Visitor v){
+        this.name.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         if(this.plusplus){
             return("" + String.format("%s ++;", this.name));

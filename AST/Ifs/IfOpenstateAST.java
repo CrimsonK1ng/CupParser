@@ -1,17 +1,18 @@
 class IfOpenstateAST extends OpenstateAST implements AST{
     ExprAST expr;
-    OpenstateAST open;
     StatementAST  state;
 
     public IfOpenstateAST(ExprAST expr, StatementAST state){
         this.expr = expr;
         this.state=  state;
-        this.open = null;
     }
-    public IfOpenstateAST(ExprAST expr, OpenstateAST open){
-        this.expr = expr;
-        this.open = open;
-        this.state = null;
+
+
+    public void accept(Visitor v){
+        v.visit(this);
+        this.expr.accept(v);
+        if(this.state != null)
+            this.state.accept(v);
     }
 
     public String toString(int indent){

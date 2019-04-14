@@ -1,8 +1,13 @@
 class OptionalfinalAST implements AST{
     boolean isfinal;
 
-    public OptionalfinalAST(boolean is){
+    public OptionalfinalAST(Boolean is){
         this.isfinal = is;
+    }
+
+
+    public void accept(Visitor v){
+        v.visit(this);
     }
 
     public String toString(){

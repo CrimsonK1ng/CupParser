@@ -9,6 +9,15 @@ class SimpleBodyAST extends SimplestateAST{
         this.semi = semi;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+        this.fields.accept(v);
+        this.stmtlist.accept(v);
+        this.semi.accept(v);
+        v.exitScope(); 
+    }
+
     public String toString(int indent){
         return (getBase(indent-1) + "{\n"
                 + String.format("%s", this.fields.toString(indent))

@@ -1,5 +1,5 @@
 class Another{
-    int main(int i, int j, string k, char c){
+    int main(int i, int j, char k, char c){
         if ( (i < j) && (k < c))balognia = "balogne";else makeda = "money";
 
         while(true){

@@ -2,6 +2,11 @@ class SimplePrintlineAST extends SimplePrintlistAST{
     public SimplePrintlineAST(){
     }
 
+    
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString(){
         return("" + String.format("PRINTLINE"));
     }

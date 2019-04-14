@@ -13,6 +13,13 @@ class FunctionexprAST extends ExprAST implements AST{
 
     }
 
+
+    public void accept(Visitor v){
+        this.id.accept(v);
+        this.args.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         if (args == null){
             return("" + String.format("%s ()", id));

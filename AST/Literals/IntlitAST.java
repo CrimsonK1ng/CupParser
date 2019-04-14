@@ -10,6 +10,11 @@ class IntlitAST  extends ExpressionLiterals implements AST {
         } catch (NumberFormatException e) { number=null; }
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString() {
         return(this.number.toString());
     }

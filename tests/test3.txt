@@ -7,7 +7,7 @@ class program{
 
     }
 
-    void jk(int i, string s, float f){
+    void jk(int i, char s, float f){
         int i = 1 + 2;
         float f = 23.034;
         j = f * i;

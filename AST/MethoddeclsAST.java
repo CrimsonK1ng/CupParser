@@ -12,6 +12,17 @@ class MethoddeclsAST extends SimpleMethods implements AST{
         this.other_method = other;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+        this.returns.accept(v);
+        this.ident.accept(v);
+        this.method.accept(v);
+        v.exitScope();
+        if(this.other_method.other_method != null)
+            this.other_method.accept(v);
+    }
+
     public String toString(){
         if(this.method == null || this.other_method == null)
             return "";
@@ -22,7 +33,9 @@ class MethoddeclsAST extends SimpleMethods implements AST{
     public String toString(int indent){
         if(this.other_method == null)
             return "";
-
-        return(getBase(indent) + String.format("%s %s %s\n%s", this.returns, this.ident, this.method.toString(indent), this.other_method.toString(indent)));
+        String othermethod = "";
+        if (this.other_method != null)
+            othermethod = this.other_method.toString(indent);
+        return(getBase(indent) + String.format("%s %s %s\n%s", this.returns, this.ident, this.method.toString(indent), othermethod));
     }
 }

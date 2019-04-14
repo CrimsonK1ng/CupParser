@@ -12,8 +12,12 @@ class IfClosedAST extends ClosedstateAST implements AST{
         this.expr = expr;
     }
 
-    public String toString(){
-        return("" + String.format("if ( %s )\n%s\nELSE\n%s", this.expr, this.close1, this.close2));
+
+    public void accept(Visitor v){
+        v.visit(this);
+        this.expr.accept(v);
+        this.close1.accept(v);
+        this.close2.accept(v);
     }
 
     public String toString(int indent){

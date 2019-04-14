@@ -10,6 +10,12 @@ class ClosedstateAST extends StatementAST implements AST{
         this.simple = simple;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+        this.simple.accept(v);
+    }
+
     public String toString(int indent){
         return( String.format("%s", this.simple.toString(indent)));
     }

@@ -1,7 +1,7 @@
 class anIdent {
 	final int i ;
-	void main ( string s, int j, string kk  ) {
-		string mynameis ;
+	void main ( char s, int j, char kk  ) {
+		char mynameis ;
 		mynameis = "jeff";
 		print ( "it works" );
 		printline ( );
@@ -23,7 +23,7 @@ class anIdent {
 			return -1;
 		}
 	};
-	string testexpressions ( int j  ) {
+	char testexpressions ( int j  ) {
 		int i = (b ? d : c);
 		test2 ( );
 		id ++;
@@ -74,7 +74,8 @@ class anIdent {
 		c = a == b;
 		c = a <> b;
 	}
-	string argDecls ( int a[], string b  ) {
+	char argDecls ( int a[], char b  ) {
 		somemethod ( ~12312 );
 	};
 }
+

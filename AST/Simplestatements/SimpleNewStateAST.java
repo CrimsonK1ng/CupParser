@@ -6,6 +6,11 @@ class SimpleNewStateAST extends ClosedstateAST {
         this.state = s;
     }
 
+    public void accept(Visitor v){
+        this.state.accept(v);
+        v.visit(this);
+    }
+
     public String toString(int indent){
         return("" + String.format("%s", this.state));
     }

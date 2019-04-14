@@ -4,6 +4,11 @@ class SimplestateAST extends ClosedstateAST implements AST{
 
     }
 
+    
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString(){
         return "SIMPLE";
     }

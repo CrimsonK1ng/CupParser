@@ -12,8 +12,6 @@ terminal DIVIDE;
 terminal SEMI;
 terminal COLON;
 terminal COMMA;
-terminal UMINUS;
-terminal UPLUS;
 terminal LEFT_PAREN;
 terminal RT_PAREN;
 terminal LEFT_BRKT;
@@ -55,7 +53,6 @@ terminal INT;
 terminal FLOAT;
 terminal CHAR;
 terminal BOOL;
-terminal STRING;
 
 /**
 * Literals
@@ -145,6 +142,7 @@ precedence left EQEQ, NOT_EQ;
 precedence left GTR, GTR_EQ, LESS, LESS_EQ;
 precedence left MINUS, PLUS;
 precedence left TIMES, DIVIDE;
+precedence left MINUSMINUS, PLUSPLUS;
 
 start with prog;
 
@@ -164,9 +162,9 @@ fieldlist               ::= fieldlist:fs FINAL type:t ident:i  field:f
                         ;
 
 field                   ::= optexpr:e SEMI
-                            {: RESULT = new FieldAST(e); :}
+                            {: RESULT = new FieldExprAST(e); :}
                         |   LEFT_BRKT int:i RT_BRKT SEMI
-                            {: RESULT = new FieldAST(i); :}
+                            {: RESULT = new FieldArrayAST(i); :}
                         ;
 
 methods                 ::= type:t ident:i meth:m methods:ml
@@ -281,8 +279,8 @@ type                    ::= INT
                             {: RESULT = new TypeAST("int"); :}
                         | FLOAT
                             {: RESULT = new TypeAST("float"); :}
-                        | STRING
-                            {: RESULT = new TypeAST("string"); :}
+                        | BOOL
+                            {: RESULT = new TypeAST("bool"); :}
                         | CHAR
                             {: RESULT = new TypeAST("char"); :}
                         ;
@@ -340,7 +338,7 @@ singleexpr              ::= name:n
                         | FALSE
                             {: RESULT = new SingleexprAST(new BooleanAST(false)); :}
                         | LEFT_PAREN expr:e RT_PAREN
-                            {: RESULT = new SingleQuotedExprAST(e); :}
+                            {: RESULT = new SingleParenedExprAST(e); :}
                         ;
 
 

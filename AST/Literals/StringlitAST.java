@@ -8,6 +8,11 @@ class StringlitAST  extends ExpressionLiterals implements AST {
         this.s = s;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString() {
         return(""+String.format("%s", this.s));
     }

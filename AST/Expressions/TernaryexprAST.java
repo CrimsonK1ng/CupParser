@@ -10,6 +10,14 @@ class TernaryexprAST extends ExprAST implements AST{
         this.false_expr = e3;
     }
 
+
+    public void accept(Visitor v){
+        this.expr1.accept(v);
+        this.true_expr.accept(v);
+        this.false_expr.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         return(""+String.format("(%s ? %s : %s)", expr1, true_expr, false_expr));
     }

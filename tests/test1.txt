@@ -1,13 +1,13 @@
-class anIdent  { 
+class anIdent  {
     final int i;
-    void main( string s, int j, string kk){
-        string mynameis;
+    void main( char s, int j, char kk){
+        char mynameis;
         mynameis = "jeff";
         print("it works");
         printline();
         while(mynameis == "jeff"){
             if ( d < c ) {
-                return blah; 
+                return blah;
             }
         }
     };
@@ -22,7 +22,7 @@ class anIdent  {
     };
 
 
-    string testexpressions( int j ){
+    char testexpressions( int j ){
         int i = ( b ? d : c );
         test2();
         id ++;
@@ -72,7 +72,7 @@ class anIdent  {
     }
 
 
-    string argDecls(int a[], string b){
+    char argDecls(int a[], char b){
         somemethod(~12312);
     };
 }

@@ -11,6 +11,13 @@ class ReturntypeAST implements AST {
         this.isVoid = isVoid;
     }
 
+
+    public void accept(Visitor v){
+        if(this.type != null)
+            this.type.accept(v);
+        v.visit(this);
+    }
+
     public String toString() {
         if (this.isVoid){
             return "void";

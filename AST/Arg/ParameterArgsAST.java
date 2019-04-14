@@ -16,6 +16,14 @@ class ParameterArgsAST implements AST{
         this.next_arg = args;
     }
 
+    public void accept(Visitor v){
+        if(this.next_arg != null)
+            this.next_arg.accept(v);
+        this.expr.accept(v);
+        v.visit(this);
+    }
+
+
     public String toString(){
         if(this.next_arg != null){
             return("" + String.format("%s, %s", this.expr, this.next_arg));

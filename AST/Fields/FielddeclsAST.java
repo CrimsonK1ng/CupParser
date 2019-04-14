@@ -20,6 +20,18 @@ class FielddeclsAST extends SimpleMethods implements AST{
         this.field_decls= decls;
     }
 
+
+    public void accept(Visitor v){
+        if(this.field != null){
+            this.fin.accept(v);
+            this.type.accept(v);
+            this.field.accept(v);
+            v.visit(this);
+        }
+        if(this.field_decls != null)
+            this.field_decls.accept(v);
+    }
+
     public String toString(){
         if(this.field_decls == null){
             return "";
@@ -31,8 +43,12 @@ class FielddeclsAST extends SimpleMethods implements AST{
         if(this.field_decls == null){
             return "";
         }
+        String field = "";
+        if(this.field != null){
+            field = this.field.toString();
+        }
         return("" + String.format("%s", this.field_decls.toString(indent))
-                + getBase(indent) + String.format("%s%s %s %s\n", this.fin, this.type, this.ident, this.field));
+                + getBase(indent) + String.format("%s%s %s %s\n", this.fin, this.type, this.ident, field));
 
     }
 }

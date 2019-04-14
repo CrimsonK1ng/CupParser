@@ -9,6 +9,11 @@ class FloatlitAST  extends ExpressionLiterals implements AST {
     catch (NumberFormatException e) { number = Float.NaN; };
   }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
   public String toString() {
     return(""+String.format("%.2f",number));
   }

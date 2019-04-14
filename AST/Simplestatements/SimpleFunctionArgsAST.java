@@ -7,6 +7,13 @@ class SimpleFunctionArgsAST extends SimplestateAST implements AST{
         this.args = args;
     }
 
+
+    public void accept(Visitor v){
+        this.id.accept(v);
+        this.args.accept(v);
+        v.visit(this);
+    }
+
     public String toString(){
         return("" + String.format("%s ( %s );", this.id, this.args));
     }

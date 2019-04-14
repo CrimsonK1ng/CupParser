@@ -11,6 +11,15 @@ class MethodAST extends SimpleMethods implements AST{
         this.statelist = sl;
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+        this.arglist.accept(v);
+        this.fields.accept(v);
+        this.statelist.accept(v);
+        this.semi.accept(v);
+    }
+
     public String toString(){
         return("" + String.format("( %s ) { %s %s }%s", this.arglist, this.fields, this.statelist,  this.semi));
     }

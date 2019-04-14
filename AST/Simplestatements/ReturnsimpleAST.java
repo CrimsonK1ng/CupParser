@@ -3,6 +3,11 @@ class ReturnsimpleAST extends SimplestateAST implements AST{
 
     }
 
+
+    public void accept(Visitor v){
+        v.visit(this);
+    }
+
     public String toString(){
         return "return;";
     }
