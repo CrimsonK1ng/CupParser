@@ -14,4 +14,8 @@ class FieldArrayAST extends FieldAST implements AST{
         return ("" + String.format("[%d];", this.num));
 
     }
+
+    public String getType(Visitor e){
+        return "";
+    }
 }

@@ -14,4 +14,9 @@ class ReturnsimpleAST extends SimplestateAST implements AST{
     public String toString(int indent){
         return(getBase(indent) + "return;");
     }
+
+    @Override
+    public String getType(Visitor e){
+        return "void";
+    }
 }

@@ -21,15 +21,19 @@ class MethodAST extends SimpleMethods implements AST{
     }
 
     public String toString(){
-        return("" + String.format("( %s ) { %s %s }%s", this.arglist, this.fields, this.statelist,  this.semi));
+        return(""+ String.format("( %s ) { %s %s }%s", this.arglist, this.fields, this.statelist,  this.semi));
     }
 
     public String toString(int indent){
-        return(""
+        return (""
                 + String.format("( %s ) {\n", this.arglist)
                 + String.format("%s", this.fields.toString(indent+1))
                 + String.format("%s", this.statelist.toString(indent+1))
                 + getBase(indent) + String.format("}%s",this.semi)
                 );
+    }
+
+    public String getType(Visitor e) throws TypeConflictException{
+        return statelist.getType(e);
     }
 }

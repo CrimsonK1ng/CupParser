@@ -17,7 +17,11 @@ class ProgramAST implements AST {
 
     public String toString() {
         //Pass indent to the toString methods
-        return(""+String.format("class %s {\n%s}",this.id.toString(), this.members.toString(1)));
+        return (""+String.format("class %s {\n%s}",this.id.toString(), this.members.toString(1)));
+    }
+
+    public String getType(Visitor e){
+        return "";
     }
 
 }

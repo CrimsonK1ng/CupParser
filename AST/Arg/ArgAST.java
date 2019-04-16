@@ -16,6 +16,14 @@ class ArgAST implements AST{
     }
 
     public String toString(){
-        return("" + String.format("%s %s", this.type, this.id));
+        return(""+ String.format("%s %s", this.type, this.id));
+    }
+
+    public String getType(Visitor e){
+        return this.type.type;
+    }
+
+    public String getType(){
+        return this.type.type;
     }
 }

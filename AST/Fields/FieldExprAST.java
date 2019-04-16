@@ -1,5 +1,5 @@
 class FieldExprAST extends FieldAST implements AST{
-    ExprAST expr;
+    public ExprAST expr;
     public FieldExprAST(ExprAST expr){
         this.expr= expr;
     }
@@ -13,5 +13,10 @@ class FieldExprAST extends FieldAST implements AST{
 
         return ("" + String.format("%s;", this.expr));
 
+    }
+
+    public String getType(Visitor e){
+        System.out.println("MADNESS " + this.expr.getType(e));
+        return this.expr.getType(e);
     }
 }

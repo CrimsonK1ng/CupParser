@@ -1,7 +1,6 @@
-class SingleParenedExprAST extends SingleexprAST{
-    ExprAST expr;
+class SingleParenedExprAST extends ExprAST{
     public SingleParenedExprAST(ExprAST expr){
-        this.expr = expr;
+        super(expr);
     }
 
     public void accept(Visitor v){
@@ -10,6 +9,10 @@ class SingleParenedExprAST extends SingleexprAST{
     }
 
     public String toString(){
-        return(""+String.format("(%s)", expr));
+        return (""+String.format("(%s)", expr));
+    }
+
+    public String getType(Visitor e){
+        return this.expr.getType(e);
     }
 }

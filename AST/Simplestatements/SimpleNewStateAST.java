@@ -1,6 +1,6 @@
 class SimpleNewStateAST extends ClosedstateAST {
 
-    StatementAST state;
+    public StatementAST state;
 
     public SimpleNewStateAST(StatementAST s){
         this.state = s;
@@ -12,6 +12,9 @@ class SimpleNewStateAST extends ClosedstateAST {
     }
 
     public String toString(int indent){
-        return("" + String.format("%s", this.state));
+        return(""+ String.format("%s", this.state));
+    }
+    public String getType(Visitor e){
+        return "";
     }
 }

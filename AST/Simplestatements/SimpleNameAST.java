@@ -1,6 +1,6 @@
 class SimpleNameAST extends SimplestateAST implements AST{
-    NameAST name;
-    boolean plusplus;
+    public NameAST name;
+    public boolean plusplus;
     public SimpleNameAST(NameAST n, boolean b){
         this.name = n;
         this.plusplus = b;
@@ -14,9 +14,9 @@ class SimpleNameAST extends SimplestateAST implements AST{
 
     public String toString(){
         if(this.plusplus){
-            return("" + String.format("%s ++;", this.name));
+            return(""+ String.format("%s ++;", this.name));
         }
-        return("" + String.format("%s --;", this.name));
+        return(""+ String.format("%s --;", this.name));
     }
 
     public String toString(int indent){
@@ -24,5 +24,8 @@ class SimpleNameAST extends SimplestateAST implements AST{
             return(getBase(indent) + String.format("%s ++;", this.name));
         }
         return(getBase(indent)+ String.format("%s --;", this.name));
+    }
+    public String getType(Visitor e){
+        return "";
     }
 }

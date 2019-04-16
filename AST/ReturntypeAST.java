@@ -1,14 +1,14 @@
 
 class ReturntypeAST implements AST {
     TypeAST type;
-    boolean isVoid;
+    boolean isvoid;
 
     public ReturntypeAST(TypeAST t) {
         this.type = t;
     }
 
-    public ReturntypeAST(boolean isVoid) {
-        this.isVoid = isVoid;
+    public ReturntypeAST(boolean isvoid) {
+        this.isvoid = isvoid;
     }
 
 
@@ -19,11 +19,18 @@ class ReturntypeAST implements AST {
     }
 
     public String toString() {
-        if (this.isVoid){
+        if (this.isvoid){
             return "void";
         }else{
             return this.type.toString();
         }
+    }
+
+    public String getType(Visitor e){
+        if(this.isvoid)
+            return "void";
+        else
+            return type.getType(e);
     }
 
 }

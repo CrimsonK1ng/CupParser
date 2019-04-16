@@ -6,7 +6,18 @@ class SymTable {
         table = new ArrayList<SymTableEntry>();
     }
 
-    public SymTableEntry lookup(String name){
+    public SymTableEntry lookupInScope(String name){
+        for( SymTableEntry e : this.table){
+            if (e.name.equals(name)){
+                return e;
+            }
+        }
+        return null;
+    }
+    /**
+    Uses the current table and only looks up from there. Will go from statement, to funciton, to class
+    */
+    public SymTableEntry lookup(String name) throws UndeclaredException{
         for( SymTableEntry e : this.table){
             if (e.name.equals(name)){
                 return e;
@@ -20,7 +31,7 @@ class SymTable {
     }
 
     public String toString(int indent){
-        String tableString = "";
+        String tableString  = "";
         for(SymTableEntry e : this.table){
             tableString += String.format("%s\n", e.toString(indent));
         }

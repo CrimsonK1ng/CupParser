@@ -26,8 +26,12 @@ class ParameterArgsAST implements AST{
 
     public String toString(){
         if(this.next_arg != null){
-            return("" + String.format("%s, %s", this.expr, this.next_arg));
+            return(""+ String.format("%s, %s", this.expr, this.next_arg));
         }
-        return("" + String.format("%s", this.expr));
+        return(""+ String.format("%s", this.expr));
+    }
+
+    public String getType(Visitor e){
+        return "";
     }
 }

@@ -16,4 +16,8 @@ class OptionalcommaAST implements AST{
         }
         return ",";
     }
+
+    public String getType(Visitor e){
+        return "";
+    }
 }

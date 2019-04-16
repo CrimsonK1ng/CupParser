@@ -2,9 +2,9 @@ class BooleanAST extends ExpressionLiterals implements AST{
     boolean is;
 
     public BooleanAST(boolean b){
+        super("bool");
         this.is = b;
     }
-
 
     public void accept(Visitor v){
         v.visit(this);
@@ -16,5 +16,9 @@ class BooleanAST extends ExpressionLiterals implements AST{
         } else {
             return "false";
         }
+    }
+
+    public String getType(Visitor v){
+        return "bool";
     }
 }

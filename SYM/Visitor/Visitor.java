@@ -55,5 +55,6 @@ interface Visitor {
     public void visit( UnaryexprAST a );
     public void visit( ArgarrayAST a );
     public void visit( ParameterArgsAST a );
-    public void exitScope();
+    public void exit();
+    public SymTableEntry lookup(String name);
 }

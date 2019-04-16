@@ -18,4 +18,9 @@ class OptionalsemiAST implements AST{
             return "";
         }
     }
+
+    public String getType(Visitor e){
+        return "";
+    }
+    
 }

@@ -1,3 +1,4 @@
+import java.util.*;
 class ArgdeclsAST implements AST{
     ArgdeclsAST arglist;
     ArgAST  arg;
@@ -25,6 +26,16 @@ class ArgdeclsAST implements AST{
         }
     }
 
+    public ArrayList<TypeAST> getTypes(){
+        ArrayList<TypeAST> args = new ArrayList<TypeAST>();
+        ArgdeclsAST cur = this; // Always skip first as it is empty.
+        while(cur.arg != null){
+            args.add(cur.arg.type);
+            cur = cur.arglist;
+        }
+        return args;
+    }
+
     public String toString(){
         if(this.arglist == null){
             return "";
@@ -34,10 +45,14 @@ class ArgdeclsAST implements AST{
             arglist = this.arglist.toString();
         }
         if(this.comma.iscomma){
-            return(""+ String.format("%s, %s", this.arg,  this.arglist));
+            return (""+ String.format("%s, %s", this.arg,  this.arglist));
         }
-        return(""+ String.format("%s %s", this.arg, arglist));
+        return (""+ String.format("%s %s", this.arg, arglist));
 
 
+    }
+
+    public String getType(Visitor e) throws TypeConflictException{
+        return "";
     }
 }

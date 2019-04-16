@@ -1,21 +1,22 @@
 class CastexprAST extends ExprAST implements AST{
-    TypeAST type;
-    ExprAST expr;
 
     public CastexprAST(TypeAST type, ExprAST expr){
-        this.type = type;
-        this.expr = expr;
-
+        super(expr, type.type);
     }
 
     public void accept(Visitor v){
-        this.type.accept(v);
         this.expr.accept(v);
         v.visit(this);
     }
 
 
     public String toString(){
-        return("" + String.format("(%s) %s", type, expr));
+        return(""+ String.format("(%s) %s", type, expr));
+    }
+
+    public String getType(Visitor e){
+        //TODO this is probably really screwed up
+        System.out.println("CHECK Type Cast Expression");
+        return type;
     }
 }

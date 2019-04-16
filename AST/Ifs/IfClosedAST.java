@@ -26,4 +26,18 @@ class IfClosedAST extends ClosedstateAST implements AST{
                   + getBase(indent) + "else\n"
                   + String.format("%s", this.close2.toString(indent+1)));
     }
+
+    public String getType(Visitor v){
+        if(this.close1.getType(v).isEmpty() && !this.close2.getType(v).isEmpty())
+            return this.close2.getType(v);
+        else if(!this.close1.getType(v).isEmpty() && this.close2.getType(v).isEmpty())
+            return this.close1.getType(v);
+        else if(this.close1.getType(v).equals(this.close2.getType(v)))
+            return this.close1.getType(v);
+        else
+            throw new TypeConflictException(
+                String.format("Return type conflict %s %s", this.close1.getType(v), this.close2.getType(v))
+            );
+
+    }
 }

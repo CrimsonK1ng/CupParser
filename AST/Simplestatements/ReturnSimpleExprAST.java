@@ -1,5 +1,5 @@
 class ReturnSimpleExprAST extends ReturnsimpleAST implements AST{
-    ExprAST expr;
+    public ExprAST expr;
 
     public ReturnSimpleExprAST(ExprAST expr){
         this.expr = expr;
@@ -13,5 +13,11 @@ class ReturnSimpleExprAST extends ReturnsimpleAST implements AST{
 
     public String toString(int indent){
         return getBase(indent)+ String.format("return %s;", this.expr);
+    }
+
+    @Override
+    public String getType(Visitor e){
+        System.out.println("ReturnSimpleExprAST");
+        return this.expr.getType(e);
     }
 }

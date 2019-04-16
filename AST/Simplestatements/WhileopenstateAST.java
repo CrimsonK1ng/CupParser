@@ -1,6 +1,6 @@
 class WhileopenstateAST extends OpenstateAST implements AST{
-    OpenstateAST open;
-    ExprAST expr;
+    public OpenstateAST open;
+    public ExprAST expr;
 
     public WhileopenstateAST(ExprAST expr, OpenstateAST open){
         this.expr = expr;
@@ -17,5 +17,9 @@ class WhileopenstateAST extends OpenstateAST implements AST{
     public String toString(int indent){
         return(getBase(indent) + String.format("while ( %s )\n", this.expr)
                 + String.format("%s", this.open.toString(indent+1)));
+    }
+
+    public String getType(Visitor e){
+        return this.open.getType(e);
     }
 }

@@ -17,6 +17,10 @@ class MemberdeclsAST extends SimpleMethods implements AST{
 
 
     public String toString(int indent){
-        return("" + String.format("%s%s", this.field_decls.toString(indent), this.method_decls.toString(indent)));
+        return(""+ String.format("%s%s", this.field_decls.toString(indent), this.method_decls.toString(indent)));
+    }
+
+    public String getType(Visitor e){
+        return "";
     }
 }

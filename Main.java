@@ -23,13 +23,18 @@ public class Main {
     ProgramAST program = null;
 
     try {
-      program = (ProgramAST) parser.parse().value;  // parse
-      ASTVisitor visitor = new ASTVisitor();
-      program.accept(visitor);
-      visitor.printGST();
+        program = (ProgramAST) parser.parse().value;  // parse
+        ASTVisitor visitor = new ASTVisitor();
+        program.accept(visitor);
+        visitor.printGST();
+        TCVisitor tc = new TCVisitor(visitor.getGST());
+        program.accept(tc);
+    }
+    catch (MultiplyDeclaredException e){
+        e.printStackTrace();
     }
     catch (Exception e) {
-      e.printStackTrace();
+        e.printStackTrace();
     }
 
     System.out.print(program);

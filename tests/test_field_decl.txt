@@ -1,0 +1,4 @@
+class prog{
+    int i = 123; 
+    float j = 12.12;
+}

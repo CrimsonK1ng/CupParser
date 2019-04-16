@@ -2,7 +2,7 @@
 This class exists to handle the one case where closed returns a simple
 */
 class ClosedstateAST extends StatementAST implements AST{
-    SimplestateAST simple;
+    public SimplestateAST simple;
 
     public ClosedstateAST(){}
 
@@ -18,5 +18,13 @@ class ClosedstateAST extends StatementAST implements AST{
 
     public String toString(int indent){
         return( String.format("%s", this.simple.toString(indent)));
+    }
+
+    @Override
+    public String getType(Visitor e){
+        System.out.println("CLOSED");
+        if(this.simple != null)
+            return this.simple.getType(e);
+        return "";
     }
 }

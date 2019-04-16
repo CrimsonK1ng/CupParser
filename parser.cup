@@ -123,6 +123,7 @@ non terminal SingleexprAST          singleexpr;
 non terminal UnaryexprAST           unaryexpr;
 non terminal BinaryexprAST          binaryexpr;
 non terminal TernaryexprAST         ternaryexpr;
+non terminal SingleParenedExprAST   parendexpr;
 
 
 non terminal LiteralAST             literal;
@@ -162,7 +163,7 @@ fieldlist               ::= fieldlist:fs FINAL type:t ident:i  field:f
                         ;
 
 field                   ::= optexpr:e SEMI
-                            {: RESULT = new FieldExprAST(e); :}
+                        {: RESULT = new FieldExprAST(e); :}
                         |   LEFT_BRKT int:i RT_BRKT SEMI
                             {: RESULT = new FieldArrayAST(i); :}
                         ;
@@ -256,6 +257,7 @@ printlist               ::= expr:n COMMA printlist:p
 
 returntype              ::= type:t
                             {: RESULT = new ReturntypeAST(t); :}
+
                         |   VOID
                             {: RESULT = new ReturntypeAST(true); :}
                         ;
@@ -297,6 +299,8 @@ expr                    ::= funcexpr:f
                             {: RESULT = f; :}
                         | singleexpr:f
                             {: RESULT = f; :}
+                        | parendexpr:f
+                            {: RESULT = f; :}
                         | unaryexpr:f
                             {: RESULT = f; :}
                         | binaryexpr:f
@@ -337,7 +341,9 @@ singleexpr              ::= name:n
                             {: RESULT = new SingleexprAST(new BooleanAST(true)); :}
                         | FALSE
                             {: RESULT = new SingleexprAST(new BooleanAST(false)); :}
-                        | LEFT_PAREN expr:e RT_PAREN
+                        ;
+
+parendexpr              ::= LEFT_PAREN expr:e RT_PAREN
                             {: RESULT = new SingleParenedExprAST(e); :}
                         ;
 
@@ -381,7 +387,7 @@ binop                   ::= TIMES
                         | OR
                             {: RESULT = new BinaryOp("||"); :}
                         | AND
-                            {: RESULT = new BinaryOp("*"); :}
+                            {: RESULT = new BinaryOp("&&"); :}
                         ;
 
 

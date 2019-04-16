@@ -17,6 +17,10 @@ class NameAST extends ExpressionLiterals implements AST{
     }
 
     public String toString(){
-        return("" + String.format("%s",this.id));
+        return(""+ String.format("%s",this.id));
+    }
+
+    public String getType(Visitor e){
+        return this.id.getType(e);
     }
 }

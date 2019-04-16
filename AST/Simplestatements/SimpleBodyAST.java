@@ -1,7 +1,7 @@
 class SimpleBodyAST extends SimplestateAST{
-    FielddeclsAST fields;
-    StatementlistAST stmtlist;
-    OptionalsemiAST semi;
+    public FielddeclsAST fields;
+    public StatementlistAST stmtlist;
+    public OptionalsemiAST semi;
 
     public SimpleBodyAST(FielddeclsAST f, StatementlistAST s, OptionalsemiAST semi){
         this.fields = f;
@@ -15,7 +15,7 @@ class SimpleBodyAST extends SimplestateAST{
         this.fields.accept(v);
         this.stmtlist.accept(v);
         this.semi.accept(v);
-        v.exitScope(); 
+        v.exit();
     }
 
     public String toString(int indent){
@@ -23,5 +23,10 @@ class SimpleBodyAST extends SimplestateAST{
                 + String.format("%s", this.fields.toString(indent))
                 + String.format("%s", this.stmtlist.toString(indent))
                 + getBase(indent-1) + String.format("}%s", this.semi));
+    }
+
+    public String getType(Visitor e){
+        return this.stmtlist.getType(e);
+        //return "";
     }
 }

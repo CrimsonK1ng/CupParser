@@ -1,3 +1,4 @@
+import java.util.*;
 class ASTVisitor implements Visitor{
     /*
     TODO ask professor Maclin how we handle the type checking lookups if we
@@ -18,7 +19,6 @@ class ASTVisitor implements Visitor{
     }
 
     public void visit( ProgramAST a ){
-        System.out.println("ProgramAST");
         this.gst.startProgram(a.id.name);
     }
 
@@ -75,14 +75,22 @@ class ASTVisitor implements Visitor{
         System.out.println("MethodAST");
     }
     public void visit( MethoddeclsAST a ){
-        if(a.returns.isVoid){
+        String method_args = "";
+        ArrayList<TypeAST> t = a.method.arglist.getTypes();
+        System.out.println(t.size());
+        for(int i=0; i < t.size(); i++){
+            method_args += t.get(i).type;
+            if(i < t.size()-1)
+                method_args += "_";
+        }
+        if(a.returns.isvoid){
             this.gst.addEntry(new SymTableFunctionEntry(
-                a.ident.name,
-                getSymType("void")
+                String.format("%s_%s",a.ident.name, method_args),
+                getSymType("")
             ));
         } else {
             this.gst.addEntry(new SymTableFunctionEntry(
-                a.ident.name,
+                String.format("%s_%s",a.ident.name, method_args),
                 getSymType(a.returns.type.type)
             ));
         }
@@ -223,7 +231,7 @@ class ASTVisitor implements Visitor{
     }
 
     public SymType getSymType(String t){
-        if(t.equals("void")) {
+        if(t.equals("")) {
             return (new SymTypeVoid());
         } else if ( t.equals("int") ){
             return (new SymTypeInt());
@@ -237,11 +245,19 @@ class ASTVisitor implements Visitor{
         return null; //SHOULD NOT HAPPEN
     }
 
-    public void exitScope(){
-        this.gst.exitScope();
+    public void exit(){
+        this.gst.exit();
     }
 
     public void printGST(){
         System.out.println(this.gst);
+    }
+
+    public GlobalSymbolTable getGST(){
+        return this.gst;
+    }
+
+    public SymTableEntry lookup(String s){
+        return null;
     }
 }

@@ -48,6 +48,29 @@ test4:
 	$(JAVA) -cp $(CP) Main < tests/test4.txt > test_generated/test4.txt
 	cat test_generated/test4.txt
 
+test_multiply:
+	$(JAVA) -cp $(CP) Main < tests/test_multiply.txt > test_generated/test_multiply.txt
+	cat test_generated/test_multiply.txt
+
+test_return:
+	$(JAVA) -cp $(CP) Main < tests/test_return.txt > test_generated/test_return.txt
+	cat test_generated/test_return.txt
+test_field_decls:
+	$(JAVA) -cp $(CP) Main < tests/test_field_decl.txt > test_generated/test_field_decl.txt
+	cat test_generated/test_field_decl.txt
+test_field_decl_bad:
+	$(JAVA) -cp $(CP) Main < tests/test_field_decl_bad.txt > test_generated/test_field_decl_bad.txt
+	cat test_generated/test_field_decl_bad.txt
+test_scopes:
+	$(JAVA) -cp $(CP) Main < tests/test_scopes.txt > test_generated/test_scopes.txt
+	cat test_generated/test_scopes.txt
+test_method_return:
+	$(JAVA) -cp $(CP) Main < tests/test_method_return.txt > test_generated/test_method_return.txt
+	cat test_generated/test_method_return.txt
+test_method_return_bad:
+	$(JAVA) -cp $(CP) Main < tests/test_method_return_bad.txt > test_generated/test_method_return_bad.txt
+	cat test_generated/test_method_return_bad.txt
+
 all: SimpleLexer.java parser.java $(FILE:java=class)
 
 clean:

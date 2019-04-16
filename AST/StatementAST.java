@@ -1,6 +1,6 @@
 class StatementAST extends SimpleMethods implements AST{
-    OpenstateAST open;
-    ClosedstateAST close;
+    public OpenstateAST open;
+    public ClosedstateAST close;
     public StatementAST(){}
 
     public StatementAST(OpenstateAST open){
@@ -20,14 +20,22 @@ class StatementAST extends SimpleMethods implements AST{
             this.open.accept(v);
         if(this.close != null)
             this.close.accept(v);
-        //v.exitScope(); We will leave this to the lower level classes
+        //v.exit(); We will leave this to the lower level classes
     }
 
 
     public String toString(int indent){
         if(this.open != null){
-            return("" + String.format("%s", this.open.toString(indent)));
+            return(""+ String.format("%s", this.open.toString(indent)));
         }
-        return("" + String.format("%s", this.close.toString(indent)));
+        return(""+ String.format("%s", this.close.toString(indent)));
+    }
+
+    public String getType(Visitor e){
+        if(this.open != null)
+            return this.open.getType(e);
+        if(this.close != null)
+            return this.close.getType(e);
+        return "";
     }
 }

@@ -4,13 +4,22 @@ class SymTableEntry{
     public SymTable table;
     public String name;
     public SymType type;
+    public Boolean isArray;
+    public int size;
 
     public SymTableEntry(){
         this.parent = null;
         this.table = null;
         this.isfinal = false;
+        this.isArray = false;
+        this.size = 0;
     }
     public SymTableEntry(String name, SymType type){
+        this.parent = null;
+        this.table = null;
+        this.isfinal = false;
+        this.isArray = false;
+        this.size = 0;
         this.name = name;
         this.type = type;
     }

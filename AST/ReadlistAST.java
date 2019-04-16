@@ -22,8 +22,12 @@ class ReadlistAST implements AST{
 
     public String toString(){
         if (this.read != null){
-            return("" + String.format("%s, %s", this.name, this.read));
+            return(""+ String.format("%s, %s", this.name, this.read));
         }
-        return("" + String.format("%s", this.name));
+        return(""+ String.format("%s", this.name));
+    }
+
+    public String getType(Visitor e){
+        return "";
     }
 }

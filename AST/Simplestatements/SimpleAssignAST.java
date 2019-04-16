@@ -1,6 +1,6 @@
 class SimpleAssignAST extends SimplestateAST{
-    NameAST name;
-    ExprAST expr;
+    public NameAST name;
+    public ExprAST expr;
 
     public SimpleAssignAST(NameAST n, ExprAST e){
         this.name = n;
@@ -15,10 +15,19 @@ class SimpleAssignAST extends SimplestateAST{
     }
 
     public String toString(){
-        return("" + String.format("%s = %s;", this.name, this.expr));
+        return(""+ String.format("%s = %s;", this.name, this.expr));
     }
 
     public String toString(int indent){
         return(getBase(indent) + String.format("%s = %s;", this.name, this.expr));
+    }
+
+    public String getType(Visitor e) throws TypeConflictException{
+        if (!name.getType(e).equals(expr.getType(e))){
+            throw new TypeConflictException(String.format(
+            "Name %s Conflicts with Expr: %s", this.name.toString(), this.expr.toString())
+            );
+        }
+        return "";
     }
 }

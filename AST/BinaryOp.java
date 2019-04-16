@@ -13,11 +13,15 @@ class BinaryOp implements AST {
     }
 
     public String toString(int indent) {
-        return(""+String.format("%s",this.op));
+        return (""+String.format("%s",this.op));
     }
 
     public String toString() {
-        return(""+String.format("%s",this.op));
+        return (""+String.format("%s",this.op));
+    }
+
+    public String getType(Visitor e) {
+        return "";
     }
 
 }

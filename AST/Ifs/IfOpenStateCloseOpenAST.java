@@ -23,4 +23,17 @@ class IfOpenStateCloseOpenAST extends OpenstateAST{
                 + getBase(indent) + "else\n"
                 + String.format("%s", this.open.toString(indent+1)));
     }
+
+    public String getType(Visitor v){
+        if(this.open.getType(v).equals(this.closed.getType(v)))
+            return this.open.getType(v);
+        else if (this.open.getType(v).isEmpty() && !this.closed.getType(v).isEmpty())
+            return this.closed.getType(v);
+        else if (!this.open.getType(v).isEmpty() && this.closed.getType(v).isEmpty())
+            return this.open.getType(v);
+        else
+            throw new TypeConflictException(
+                String.format("Return type conflict %s %s", this.open.getType(v), this.closed.getType(v))
+            );
+    }
 }

@@ -7,6 +7,10 @@ class FieldAST implements AST{
     }
 
     public String toString(){
-        return("");
+        return ("");
+    }
+
+    public String getType(Visitor e){
+        return "void";
     }
 }

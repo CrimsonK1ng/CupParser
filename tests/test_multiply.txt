@@ -1,0 +1,4 @@
+class multiply{
+    int i = 10;
+    int i = "string";
+}

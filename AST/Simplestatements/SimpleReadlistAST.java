@@ -11,10 +11,13 @@ class SimpleReadlistAST extends SimplestateAST implements AST{
     }
 
     public String toString(){
-        return("" + String.format("read ( %s );", this.rlist));
+        return(""+ String.format("read ( %s );", this.rlist));
     }
 
     public String toString(int indent){
         return(getBase(indent) + String.format("read ( %s );", this.rlist));
+    }
+    public String getType(Visitor e){
+        return "";
     }
 }

@@ -20,8 +20,11 @@ class OptionalexprAST extends ExprAST implements AST{
         if (this.expr == null){
             return "";
         }
-        return("" + String.format("= %s", this.expr));
+        return(""+ String.format("= %s", this.expr));
 
     }
 
+    public String getType(Visitor e){
+        return "";
+    }
 }

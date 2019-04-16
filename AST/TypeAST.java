@@ -12,6 +12,10 @@ class TypeAST implements AST{
     }
 
     public String toString(){
-        return "" + String.format("%s", this.type);
+        return String.format("%s", this.type);
+    }
+
+    public String getType(Visitor e){
+        return type;
     }
 }

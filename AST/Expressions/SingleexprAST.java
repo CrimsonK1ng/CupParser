@@ -1,11 +1,10 @@
 
 class SingleexprAST extends ExprAST implements AST{
-    ExpressionLiterals expr;
 
     public SingleexprAST(){}
 
     public SingleexprAST(ExpressionLiterals expr){
-        this.expr= expr;
+        super(expr);
     }
 
     public void accept(Visitor v){
@@ -14,6 +13,11 @@ class SingleexprAST extends ExprAST implements AST{
 
 
     public String toString(){
-        return(""+String.format("%s", expr));
+        return (""+String.format("%s", expr));
+    }
+
+    public String getType(Visitor e){
+        System.out.println("SingleexprAST " + this.expr.getType(e));
+        return this.expr.getType(e);
     }
 }

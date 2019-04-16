@@ -1,9 +1,20 @@
 class ExprAST implements AST{
-    ExprAST expr;
-    public ExprAST(){}
+    public ExprAST expr;
+    public String type;
+    public ExprAST(){
+    }
 
     public ExprAST(ExprAST expr){
         this.expr = expr;
+        this.type = expr.type;
+    }
+
+    public ExprAST(String type){
+        this.type = type;
+    }
+    public ExprAST(ExprAST expr, String type){
+        this.expr = expr;
+        this.type = type;
     }
 
 
@@ -14,7 +25,12 @@ class ExprAST implements AST{
 
 
     public String toString(){
-        return("" + String.format("%s", expr));
+        return(""+ String.format("%s", expr));
+    }
+
+    public String getType(Visitor e){
+        System.out.println("UHHHH");
+        return expr.getType(e);
     }
 
 }

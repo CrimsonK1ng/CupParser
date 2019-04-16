@@ -1,0 +1,5 @@
+class prog{
+    int main(){
+        return "bad";
+    }
+}

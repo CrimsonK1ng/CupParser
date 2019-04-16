@@ -22,9 +22,13 @@ class FunctionexprAST extends ExprAST implements AST{
 
     public String toString(){
         if (args == null){
-            return("" + String.format("%s ()", id));
+            return(""+ String.format("%s ()", id));
         } else{
-            return("" + String.format("%s (%s)", id, args));
+            return(""+ String.format("%s (%s)", id, args));
         }
+    }
+
+    public String getType(Visitor e) throws TypeConflictException{
+        return "TODO";
     }
 }

@@ -16,4 +16,7 @@ class SimplePrintlistAST extends SimplestateAST implements AST{
     public String toString(int indent){
         return(getBase(indent) + String.format("print ( %s );", this.plist));
     }
+    public String getType(Visitor e){
+        return "";
+    }
 }

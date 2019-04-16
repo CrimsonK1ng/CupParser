@@ -21,8 +21,13 @@ class PrintlistAST implements AST{
 
     public String toString(){
         if(this.plist != null){
-            return("" + String.format("%s, %s", this.expr, this.plist));
+            return(""+ String.format("%s, %s", this.expr, this.plist));
         }
-        return("" + String.format("%s", this.expr));
+        return(""+ String.format("%s", this.expr));
+    }
+
+    public String getType(Visitor e){
+        // Not sure if I have to check this one;
+        return "";
     }
 }

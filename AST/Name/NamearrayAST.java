@@ -20,6 +20,18 @@ class NamearrayAST extends NameAST implements AST{
     }
 
     public String toString(){
-        return("" + String.format("%s [%s]", this.id, this.expr));
+        return(""+ String.format("%s [%s]", this.id, this.expr));
+    }
+
+    public String getType(Visitor e) throws TypeConflictException{
+        if(!this.expr.getType(e).equals("int")){
+            throw new TypeConflictException(
+                String.format(
+                    "Array access requires integer. Expr: %s, is in conflict",
+                    this.expr.toString()
+                )
+            );
+        }
+        return this.id.type;
     }
 }
