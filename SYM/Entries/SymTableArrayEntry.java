@@ -11,7 +11,7 @@ class SymTableArrayEntry extends SymTableEntry{
         this.isArray = true;
     }
     public String toString(int indent){
-        if(this.isfinal){
+        if(this.ifFinal){
             return getBase(indent) + String.format("final %s %s[]", this.type.getType(), this.name);
         }
         return getBase(indent) + String.format("%s %s[%d]", this.type.getType(), this.name, this.size);

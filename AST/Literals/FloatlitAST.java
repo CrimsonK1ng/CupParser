@@ -2,7 +2,7 @@
  * AST node for a number
  */
 class FloatlitAST  extends ExpressionLiterals implements AST {
-  Float number;
+  public Float number;
 
   public FloatlitAST(String s) {
     super("float");

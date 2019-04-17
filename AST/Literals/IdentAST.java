@@ -2,9 +2,10 @@
  * AST node for an identifier
  */
 class IdentAST  extends ExpressionLiterals implements AST {
-    String name;
-    String type;
-    Boolean isArray;
+    public String name;
+    public String type;
+    public Boolean isFinal;
+    public Boolean isArray;
 
     public IdentAST(){
         type = null;
@@ -17,10 +18,12 @@ class IdentAST  extends ExpressionLiterals implements AST {
     }
 
     public String getType(Visitor e){
-        SymTableEntry entry = e.lookup(name);
-        this.type = entry.type.getType();
-        this.isArray = entry.isArray;
-        System.out.println(entry.isArray);
+        if(this.type == null){
+            SymTableEntry ent = e.lookup(this.name);
+            this.type = ent.type.getType();
+            this.isArray = ent.isArray;
+            this.isFinal = ent.ifFinal;
+        }
         if(this.isArray){
             return "Array";
         }

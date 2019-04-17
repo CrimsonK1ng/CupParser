@@ -1,8 +1,8 @@
 class OptionalfinalAST implements AST{
-    boolean isfinal;
+    boolean ifFinal;
 
     public OptionalfinalAST(Boolean is){
-        this.isfinal = is;
+        this.ifFinal = is;
     }
 
 
@@ -11,7 +11,7 @@ class OptionalfinalAST implements AST{
     }
 
     public String toString(){
-        if (this.isfinal){
+        if (this.ifFinal){
             return "final ";
         } else {
             return "";

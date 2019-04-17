@@ -17,7 +17,6 @@ class SingleexprAST extends ExprAST implements AST{
     }
 
     public String getType(Visitor e){
-        System.out.println("SingleexprAST " + this.expr.getType(e));
         return this.expr.getType(e);
     }
 }

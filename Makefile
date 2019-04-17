@@ -61,6 +61,30 @@ test_field_decls:
 test_field_decl_bad:
 	$(JAVA) -cp $(CP) Main < tests/test_field_decl_bad.txt > test_generated/test_field_decl_bad.txt
 	cat test_generated/test_field_decl_bad.txt
+test_final:
+	$(JAVA) -cp $(CP) Main < tests/test_final.txt > test_generated/test_final.txt
+	cat test_generated/test_final.txt
+test_final_bad:
+	$(JAVA) -cp $(CP) Main < tests/test_final_bad.txt > test_generated/test_final_bad.txt
+	cat test_generated/test_final_bad.txt
+test_function:
+	$(JAVA) -cp $(CP) Main < tests/test_function.txt > test_generated/test_function.txt
+	cat test_generated/test_function.txt
+test_function_bad_int:
+	$(JAVA) -cp $(CP) Main < tests/test_function_bad_int.txt > test_generated/test_function_bad_int.txt
+	cat test_generated/test_function_bad_int.txt
+test_function_bad_char:
+	$(JAVA) -cp $(CP) Main < tests/test_function_bad_char.txt > test_generated/test_function_bad_char.txt
+	cat test_generated/test_function_bad_char.txt
+test_function_bad_string:
+	$(JAVA) -cp $(CP) Main < tests/test_function_bad_string.txt > test_generated/test_function_bad_string.txt
+	cat test_generated/test_function_bad_string.txt
+test_function_bad_float:
+	$(JAVA) -cp $(CP) Main < tests/test_function_bad_float.txt > test_generated/test_function_bad_float.txt
+	cat test_generated/test_function_bad_float.txt
+test_function_bad_bool:
+	$(JAVA) -cp $(CP) Main < tests/test_function_bad_bool.txt > test_generated/test_function_bad_bool.txt
+	cat test_generated/test_function_bad_bool.txt
 test_scopes:
 	$(JAVA) -cp $(CP) Main < tests/test_scopes.txt > test_generated/test_scopes.txt
 	cat test_generated/test_scopes.txt

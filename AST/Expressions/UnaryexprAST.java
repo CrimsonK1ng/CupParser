@@ -2,7 +2,7 @@ class UnaryexprAST extends ExprAST implements AST{
     String operator;
 
     public UnaryexprAST(String op, ExprAST expr){
-        super(expr, expr.type);
+        super(expr);
         this.operator = op;
     }
 

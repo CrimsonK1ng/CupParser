@@ -13,7 +13,6 @@ abstract class OpenstateAST extends StatementAST implements AST{
 
     @Override
     public String getType(Visitor e){
-        System.out.println("OPEN");
         if(this.open != null)
             return this.open.getType(e);
         else if(this.close != null)

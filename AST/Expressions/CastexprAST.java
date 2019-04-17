@@ -16,7 +16,6 @@ class CastexprAST extends ExprAST implements AST{
 
     public String getType(Visitor e){
         //TODO this is probably really screwed up
-        System.out.println("CHECK Type Cast Expression");
         return type;
     }
 }

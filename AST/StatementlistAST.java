@@ -13,8 +13,9 @@ class StatementlistAST extends SimpleMethods implements AST{
 
 
     public void accept(Visitor v){
-        this.state.accept(v);
-        if(this.slist.state != null)
+        if(this.state != null)
+            this.state.accept(v);
+        if(this.slist != null)
             this.slist.accept(v);
         v.visit(this);
     }
@@ -26,11 +27,9 @@ class StatementlistAST extends SimpleMethods implements AST{
 
     public String getType(Visitor e) throws TypeConflictException{
         StatementlistAST cur = this;
-        System.out.println(state.getType(e));
         String ret = "";
+        String temp = "";
         while(cur.state != null){
-            System.out.println(ret);
-            String temp = "";
             temp = cur.state.getType(e);
             if(ret.isEmpty()){
                 ret = temp;
@@ -40,7 +39,7 @@ class StatementlistAST extends SimpleMethods implements AST{
                     String.format("Return type conflict %s %s", ret, temp)
                 );
             }
-            cur = this.slist;
+            cur = cur.slist;
         }
         if(ret.isEmpty())
             return "void";

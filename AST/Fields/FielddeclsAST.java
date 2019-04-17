@@ -25,6 +25,7 @@ class FielddeclsAST extends SimpleMethods implements AST{
         if(this.field != null){
             this.fin.accept(v);
             this.type.accept(v);
+            this.ident.accept(v);
             this.field.accept(v);
             v.visit(this);
         }
@@ -53,10 +54,15 @@ class FielddeclsAST extends SimpleMethods implements AST{
     }
 
     public String getType(Visitor e) throws TypeConflictException{
-        if(this.field.getType(e).equals(this.type.getType(e))){
-            return this.type.getType(e);
+        FielddeclsAST cur = this;
+        while(cur.field != null){
+            if(!cur.field.getType(e).equals(cur.type.getType(e))){
+                throw new TypeConflictException(String.format("Type %s cannot be applied to type %s", this.type.getType(e), this.field.getType(e)));
+            }
+
+            cur = cur.field_decls;
         }
-        throw new TypeConflictException(String.format("Type %s cannot be applied to type %s", this.type.getType(e), this.field.getType(e)));
+        return "";
         //return this.type.getType(e);
     }
 }

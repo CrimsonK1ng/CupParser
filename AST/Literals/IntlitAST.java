@@ -2,7 +2,7 @@
  * AST node for a number
  */
 class IntlitAST  extends ExpressionLiterals implements AST {
-    Integer number;
+    public Integer number;
 
     public IntlitAST(String s) {
         super("int");

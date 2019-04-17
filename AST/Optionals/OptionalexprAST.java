@@ -1,12 +1,10 @@
 class OptionalexprAST extends ExprAST implements AST{
-    ExprAST expr;
 
     public OptionalexprAST(){
-        this.expr = null;
     }
 
     public OptionalexprAST(ExprAST expr){
-        this.expr = expr;
+        super(expr);
     }
 
 
@@ -25,6 +23,6 @@ class OptionalexprAST extends ExprAST implements AST{
     }
 
     public String getType(Visitor e){
-        return "";
+        return this.expr.getType(e);
     }
 }

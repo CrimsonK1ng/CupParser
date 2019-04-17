@@ -17,7 +17,6 @@ class ReturnSimpleExprAST extends ReturnsimpleAST implements AST{
 
     @Override
     public String getType(Visitor e){
-        System.out.println("ReturnSimpleExprAST");
         return this.expr.getType(e);
     }
 }

@@ -48,17 +48,16 @@ class ASTVisitor implements Visitor{
     }
     public void visit( FielddeclsAST a ){
         // TODO value is not stored inside the Entries right now.
-        System.out.println(a);
         if(a.field instanceof FieldExprAST){
             this.gst.addEntry(new SymTableEntry(
-                a.fin.isfinal,
+                a.fin.ifFinal,
                 a.ident.name,
                 getSymType(a.type.type)
             ));
         } else if (a.field instanceof FieldArrayAST){
             FieldArrayAST fa = (FieldArrayAST) a.field;
             this.gst.addEntry(new SymTableArrayEntry(
-                a.fin.isfinal,
+                a.fin.ifFinal,
                 a.ident.name,
                 getSymType(a.type.type),
                 fa.num.number
@@ -72,12 +71,10 @@ class ASTVisitor implements Visitor{
 
     }
     public void visit( MethodAST a ){
-        System.out.println("MethodAST");
     }
     public void visit( MethoddeclsAST a ){
         String method_args = "";
         ArrayList<TypeAST> t = a.method.arglist.getTypes();
-        System.out.println(t.size());
         for(int i=0; i < t.size(); i++){
             method_args += t.get(i).type;
             if(i < t.size()-1)

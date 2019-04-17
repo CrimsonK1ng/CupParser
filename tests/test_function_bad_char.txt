@@ -1,0 +1,9 @@
+class p1{
+    int testBad(int j){
+        return 1;
+    }
+
+    int main(){
+        return testBad('c');
+    }
+}

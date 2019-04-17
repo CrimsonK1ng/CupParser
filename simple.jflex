@@ -52,7 +52,7 @@ digit               = [0-9]
 letter              = [A-Za-z]
 alphanumeric        = {letter}|{digit}
 intlit              = {digit}+
-charlit             = \'([^\'\\]|\\\'|\\\\)\'
+charlit             = \'[^\']*\'
 stringlit           = \"[^\"]*\"
 floatlit            = {digit}+\.{digit}+
 identifier          = [a-zA-Z]{alphanumeric}*
@@ -109,7 +109,7 @@ read            { return newSym(sym.READ, "read"); }
 {intlit}        { return newSym(sym.INTLIT, yytext()); }
 {floatlit}      { return newSym(sym.FLOATLIT, yytext()); }
 {stringlit}      { return newSym(sym.STRINGLIT, yytext()); }
-{charlit}       { return newSym(sym.CHARLIT, yytext().charAt(1) ); }
+{charlit}       { return newSym(sym.CHARLIT, yytext() ); }
 {comment}       { /* Ignore comment line */
                     System.out.println("Comment line: " + yytext()); }
 {commentblock}  { /* Ignore comment line */

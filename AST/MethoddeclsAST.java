@@ -42,7 +42,6 @@ class MethoddeclsAST extends SimpleMethods implements AST{
     }
 
     public String getType(Visitor e) throws TypeConflictException{
-        System.out.println(this.returns.getType(e));
         if(!this.returns.getType(e).equals(this.method.getType(e))){
             throw new TypeConflictException(String.format("%s not compatable with %s", this.returns, this.method.getType(e)));
         }

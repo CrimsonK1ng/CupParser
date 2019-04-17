@@ -2,7 +2,7 @@
  * AST node for a number
  */
 class StringlitAST  extends ExpressionLiterals implements AST {
-    String s;
+    public String s;
 
     public StringlitAST(String s) {
         super("string");

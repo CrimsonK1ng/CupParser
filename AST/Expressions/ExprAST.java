@@ -6,10 +6,10 @@ class ExprAST implements AST{
 
     public ExprAST(ExprAST expr){
         this.expr = expr;
-        this.type = expr.type;
     }
 
     public ExprAST(String type){
+        this.expr = null;
         this.type = type;
     }
     public ExprAST(ExprAST expr, String type){
@@ -29,8 +29,9 @@ class ExprAST implements AST{
     }
 
     public String getType(Visitor e){
-        System.out.println("UHHHH");
-        return expr.getType(e);
+        if(this.expr != null)
+            return expr.getType(e);
+        return this.type;
     }
 
 }

@@ -1,5 +1,5 @@
 class SymTableEntry{
-    public Boolean isfinal;
+    public Boolean ifFinal;
     public SymTableEntry parent;
     public SymTable table;
     public String name;
@@ -10,14 +10,14 @@ class SymTableEntry{
     public SymTableEntry(){
         this.parent = null;
         this.table = null;
-        this.isfinal = false;
+        this.ifFinal = false;
         this.isArray = false;
         this.size = 0;
     }
     public SymTableEntry(String name, SymType type){
         this.parent = null;
         this.table = null;
-        this.isfinal = false;
+        this.ifFinal = false;
         this.isArray = false;
         this.size = 0;
         this.name = name;
@@ -25,7 +25,10 @@ class SymTableEntry{
     }
 
     public SymTableEntry(Boolean fin, String name, SymType type){
-        this.isfinal = fin;
+        this.parent = null;
+        this.table = null;
+        this.isArray = false;
+        this.ifFinal = fin;
         this.name = name;
         this.type = type;
     }
@@ -39,7 +42,7 @@ class SymTableEntry{
     }
 
     public String toString(int indent){
-        if(this.isfinal){
+        if(this.ifFinal){
             return getBase(indent) + String.format("final %s %s", this.type.getType(), this.name);
         }
         return getBase(indent) + String.format("%s %s", this.type.getType(), this.name);

@@ -1,0 +1,10 @@
+class p1{
+    final int i = 0;
+    void test(int j){
+
+    }
+    int main(){
+        test(i);
+        return i;
+    }
+}

@@ -23,6 +23,11 @@ class SimpleAssignAST extends SimplestateAST{
     }
 
     public String getType(Visitor e) throws TypeConflictException{
+        if(e.lookup(name.id.name).ifFinal){
+            throw new TypeConflictException(String.format(
+            "Final, cannot assign to variabl: %s", this.name.toString())
+            );
+        }
         if (!name.getType(e).equals(expr.getType(e))){
             throw new TypeConflictException(String.format(
             "Name %s Conflicts with Expr: %s", this.name.toString(), this.expr.toString())

@@ -29,6 +29,18 @@ class FunctionexprAST extends ExprAST implements AST{
     }
 
     public String getType(Visitor e) throws TypeConflictException{
-        return "TODO";
+        String name = this.id.name;
+        ParameterArgsAST pargs = this.args;
+        while(pargs != null){
+            name += "_";
+            name += pargs.expr.getType(e);
+            pargs = pargs.next_arg;
+        }
+        SymTableEntry entry = e.lookup(name);
+        if(entry != null){
+            return entry.type.getType();
+        }
+
+        return null;
     }
 }

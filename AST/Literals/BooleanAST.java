@@ -1,5 +1,5 @@
 class BooleanAST extends ExpressionLiterals implements AST{
-    boolean is;
+    public boolean is;
 
     public BooleanAST(boolean b){
         super("bool");

@@ -38,9 +38,7 @@ class TCVisitor implements Visitor{
 
     }
     public void visit( FielddeclsAST a ){
-        System.out.println("MADNESS");
         a.getType(this);
-
     }
     public void visit( FunctionexprAST a ){
 
@@ -192,7 +190,6 @@ class TCVisitor implements Visitor{
     }
 
     public SymTableEntry lookup(String name){
-        System.out.println(name);
         SymTableEntry e = this.gst.lookup(name);
         return e;
     }

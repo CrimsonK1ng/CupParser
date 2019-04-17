@@ -2,13 +2,11 @@
  * AST node for a number
  */
 class CharlitAST extends ExpressionLiterals implements AST {
-    char ch;
+    public Character ch;
 
     public CharlitAST(String ch) {
         super("char");
-        if (ch.length() == 1){
-            this.ch = ch.charAt(0);
-        }
+        this.ch = ch.charAt(1);
     }
 
 
@@ -17,7 +15,7 @@ class CharlitAST extends ExpressionLiterals implements AST {
     }
 
     public String toString() {
-        return (""+String.format("%s", this.ch));
+        return (""+String.format("\'%c\'", this.ch));
     }
 
     public String getType(Visitor v){

@@ -15,7 +15,6 @@ class SimplestateAST extends ClosedstateAST implements AST{
 
     @Override
     public String getType(Visitor v){
-        System.out.println("SIMPLE");
         return "";
     }
 }

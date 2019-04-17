@@ -22,7 +22,6 @@ class ClosedstateAST extends StatementAST implements AST{
 
     @Override
     public String getType(Visitor e){
-        System.out.println("CLOSED");
         if(this.simple != null)
             return this.simple.getType(e);
         return "";
