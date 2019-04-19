@@ -32,6 +32,6 @@ class NamearrayAST extends NameAST implements AST{
                 )
             );
         }
-        return this.id.type;
+        return this.id.getType(e, true);
     }
 }

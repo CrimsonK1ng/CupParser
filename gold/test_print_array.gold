@@ -1,0 +1,12 @@
+class t 
+	function int main_
+		int a[5]
+
+
+class t {
+	int main (  ) {
+		int a [5];
+		print ( a [1] );
+		return a [1];
+	}
+}

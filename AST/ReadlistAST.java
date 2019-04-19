@@ -27,7 +27,16 @@ class ReadlistAST implements AST{
         return(""+ String.format("%s", this.name));
     }
 
-    public String getType(Visitor e){
+    public String getType(Visitor e) throws TypeConflictException{
+        ReadlistAST cur = this;
+        while(cur != null){
+            if(cur.name.getType(e).equals("array")){
+                throw new TypeConflictException(String.format(
+                    "Cannot read array"
+                ));
+            }
+            cur = cur.read;
+        }
         return "";
     }
 }

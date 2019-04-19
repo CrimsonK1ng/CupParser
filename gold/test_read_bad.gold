@@ -1,0 +1,13 @@
+class t 
+	function void main_
+		char c[234]
+		int i
+
+
+class t {
+	void main (  ) {
+		int i = 123;
+		char c [234];
+		read ( i, c );
+	}
+}

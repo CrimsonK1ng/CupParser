@@ -11,11 +11,11 @@ class FieldArrayAST extends FieldAST implements AST{
 
     public String toString(){
 
-        return ("" + String.format("[%d];", this.num));
+        return ("" + String.format("[%s];", this.num));
 
     }
 
     public String getType(Visitor e){
-        return "";
+        return "array";
     }
 }

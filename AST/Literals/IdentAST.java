@@ -25,7 +25,17 @@ class IdentAST  extends ExpressionLiterals implements AST {
             this.isFinal = ent.ifFinal;
         }
         if(this.isArray){
-            return "Array";
+            return "array";
+        }
+        return type;
+    }
+
+    public String getType(Visitor e, boolean withInt){
+        if(this.type == null){
+            SymTableEntry ent = e.lookup(this.name);
+            this.type = ent.type.getType();
+            this.isArray = ent.isArray;
+            this.isFinal = ent.ifFinal;
         }
         return type;
     }

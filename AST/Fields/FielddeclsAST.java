@@ -55,8 +55,12 @@ class FielddeclsAST extends SimpleMethods implements AST{
 
     public String getType(Visitor e) throws TypeConflictException{
         FielddeclsAST cur = this;
-        while(cur.field != null){
-            if(!cur.field.getType(e).equals(cur.type.getType(e))){
+        while(cur.field_decls != null){
+            if(cur.field.getType(e).equals("array")){
+                //Special case. We can have an array of any type
+                return "";
+            }
+            else if(!cur.field.getType(e).equals(cur.type.getType(e))){
                 throw new TypeConflictException(String.format("Type %s must be same type as expression: %s", cur.type.getType(e), cur.field.getType(e)));
             }
 

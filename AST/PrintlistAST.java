@@ -26,8 +26,18 @@ class PrintlistAST implements AST{
         return(""+ String.format("%s", this.expr));
     }
 
-    public String getType(Visitor e){
+    public String getType(Visitor e) throws TypeConflictException{
         // Not sure if I have to check this one;
+        PrintlistAST cur = this;
+        while(cur != null){
+            if(cur.expr.getType(e).equals("void") || cur.expr.getType(e).equals("array")){
+                throw new TypeConflictException(String.format(
+                    "Type %s cannot be printed", cur.expr.getType(e)
+                ));
+            }
+            cur = cur.plist;
+
+        }
         return "";
     }
 }

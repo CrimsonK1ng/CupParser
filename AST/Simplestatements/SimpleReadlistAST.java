@@ -18,6 +18,6 @@ class SimpleReadlistAST extends SimplestateAST implements AST{
         return(getBase(indent) + String.format("read ( %s );", this.rlist));
     }
     public String getType(Visitor e){
-        return "";
+        return this.rlist.getType(e);
     }
 }

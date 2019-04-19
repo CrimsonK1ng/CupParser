@@ -1,0 +1,7 @@
+class t{
+    void main(){
+        int i = 123;
+        char c[234];
+        read(i, c);
+    }
+}
