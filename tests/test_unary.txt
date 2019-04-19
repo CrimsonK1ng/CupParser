@@ -1,0 +1,6 @@
+class t{
+    void main(){
+        int i = -23;
+        i = ~i;
+    }
+}

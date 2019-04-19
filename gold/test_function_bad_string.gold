@@ -1,0 +1,15 @@
+class p1 
+	function int testBad_char
+		char j
+
+	function int main_
+
+
+class p1 {
+	int testBad ( char j  ) {
+		return 1;
+	}
+	int main (  ) {
+		return testBad (23);
+	}
+}

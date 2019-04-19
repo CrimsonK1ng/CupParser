@@ -1,0 +1,9 @@
+int i = "string";
+int i = 10;
+
+int i = 10;
+
+class multiply {
+	int i = 10;
+	int i = "string";
+}

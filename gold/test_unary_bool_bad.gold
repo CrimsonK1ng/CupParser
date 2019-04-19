@@ -1,0 +1,10 @@
+class t 
+	function void main_
+		float a
+
+
+class t {
+	void main (  ) {
+		float a = ~23.23;
+	}
+}

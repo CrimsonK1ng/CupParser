@@ -1,0 +1,36 @@
+1
+MethodAST
+class program 
+	function int test1_int
+		int j[]
+		statement statement_body_-821386540 
+			statement statement_body_-2130301873 
+
+
+
+
+1
+test1_int
+test1_int
+int
+CLOSED
+CLOSED
+a
+Name: test1_int
+j
+statement_body_-821386540
+class program {
+	int test1 ( int j[]  ) {
+		if ( 1 < 2 )
+		{
+			if ( 10 * 3 )
+				a = c;
+			if ( ~c )
+			{
+				and = "so";
+			}
+			else
+				dank = true;
+		}
+	}
+}

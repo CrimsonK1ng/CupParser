@@ -84,7 +84,10 @@ class TCVisitor implements Visitor{
     public void visit( SimpleFunctionAST a ){
 
     }
-    public void visit( SimpleNameAST a ){
+    public void visit( SimpleNamePlusPlusAST a ){
+
+    }
+    public void visit( SimpleNameMinusMinusAST a ){
 
     }
     public void visit( SimplePrintlineAST a ){
@@ -192,5 +195,9 @@ class TCVisitor implements Visitor{
     public SymTableEntry lookup(String name){
         SymTableEntry e = this.gst.lookup(name);
         return e;
+    }
+
+    public SymTableEntry lookup(ArrayList<String> names){
+        return this.gst.lookup(names);
     }
 }

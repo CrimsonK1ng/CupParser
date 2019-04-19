@@ -1,0 +1,10 @@
+class t 
+	function void main_
+		char a
+
+
+class t {
+	void main (  ) {
+		char a = -'s';
+	}
+}

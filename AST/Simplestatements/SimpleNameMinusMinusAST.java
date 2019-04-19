@@ -1,9 +1,7 @@
-class SimpleNameAST extends SimplestateAST implements AST{
+class SimpleNameMinusMinusAST extends SimplestateAST implements AST{
     public NameAST name;
-    public boolean plusplus;
-    public SimpleNameAST(NameAST n, boolean b){
+    public SimpleNameMinusMinusAST(NameAST n){
         this.name = n;
-        this.plusplus = b;
     }
 
 
@@ -13,19 +11,19 @@ class SimpleNameAST extends SimplestateAST implements AST{
     }
 
     public String toString(){
-        if(this.plusplus){
-            return(""+ String.format("%s ++;", this.name));
-        }
         return(""+ String.format("%s --;", this.name));
     }
 
     public String toString(int indent){
-        if(this.plusplus){
-            return(getBase(indent) + String.format("%s ++;", this.name));
-        }
         return(getBase(indent)+ String.format("%s --;", this.name));
     }
     public String getType(Visitor e){
-        return "";
+        if(this.name.getType(e).equals("float") || this.name.getType(e).equals("int")){
+            //return this.name.getType(e);
+            return "";
+        }
+        throw new TypeConflictException(String.format(
+            "Cannot -- type %s", this.name.getType(e)
+        ));
     }
 }

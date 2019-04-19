@@ -1,0 +1,77 @@
+1
+MethodAST
+0
+MethodAST
+class p1 
+	function int testBad_char
+		char j
+
+	function int main_
+
+
+1
+lookup testBad_char
+compare testBad_char
+true
+false
+lookup testBad_char
+compare testBad_char
+true
+false
+int
+
+StatementAST@4909b8da
+ReturnSimpleExprAST
+CLOSED int
+ReturnSimpleExprAST
+CURRRR rRRint
+CURRRR StatementAST@4909b8da
+CURRRR 
+0
+lookup main_
+compare main_
+true
+false
+lookup main_
+compare main_
+true
+false
+int
+
+StatementAST@2d3fcdbd
+ReturnSimpleExprAST
+TCVisitor lookup testBad_char
+lookup testBad_char
+lookup testBad_char
+compare testBad_char
+true
+false
+lookup testBad_char
+compare testBad_char
+true
+false
+RETURN SymTableFunctionEntry@617c74e5
+CLOSED int
+ReturnSimpleExprAST
+TCVisitor lookup testBad_char
+lookup testBad_char
+lookup testBad_char
+compare testBad_char
+true
+false
+lookup testBad_char
+compare testBad_char
+true
+false
+RETURN SymTableFunctionEntry@617c74e5
+CURRRR rRRint
+CURRRR StatementAST@2d3fcdbd
+CURRRR 
+class p1 {
+	int testBad ( char j  ) {
+		return 1;
+	}
+	int main (  ) {
+		return testBad (c);
+	}
+}

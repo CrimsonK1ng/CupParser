@@ -1,0 +1,17 @@
+class ps 
+	function int main_
+		int a
+		statement statement_body_-1983054386 
+
+
+
+class ps {
+	int main (  ) {
+		int a = 1;
+		a = "123";
+		if ( a == 2 )
+		{
+			return a;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+class t{
+
+    int main(){
+        int a = ( 1 < 3 ? 'c' : "e" );
+        float i = ( true ? 123.23 : 24 );
+        return a;
+    }
+
+}

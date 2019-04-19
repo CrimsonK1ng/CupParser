@@ -1,0 +1,6 @@
+class pp{
+    void t(){
+        char b = 'a';
+        b ++
+    }
+}

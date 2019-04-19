@@ -1,0 +1,9 @@
+class t{
+    void main(){
+        bool a = true;
+        bool b = false;
+
+        bool c = b && a;
+        c = b || a;
+    }
+}

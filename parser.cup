@@ -5,9 +5,9 @@ import java_cup.runtime.*;
 */
 terminal TIMES;
 terminal PLUS;
-terminal PLUSPLUS;
+terminal PP;
 terminal MINUS;
-terminal MINUSMINUS;
+terminal MM;
 terminal DIVIDE;
 terminal SEMI;
 terminal COLON;
@@ -143,7 +143,7 @@ precedence left EQEQ, NOT_EQ;
 precedence left GTR, GTR_EQ, LESS, LESS_EQ;
 precedence left MINUS, PLUS;
 precedence left TIMES, DIVIDE;
-precedence left MINUSMINUS, PLUSPLUS;
+precedence left MM, PP;
 
 start with prog;
 
@@ -215,6 +215,10 @@ closed                  ::= simple:s
                         ;
 simple                  ::= name:n EQ expr:e SEMI
                             {: RESULT = new SimpleAssignAST(n, e); :}
+                        |   name:n PP
+                            {: RESULT = new SimpleNamePlusPlusAST(n); :}
+                        |   name:n MM
+                            {: RESULT = new SimpleNameMinusMinusAST(n); :}
                         |   READ LEFT_PAREN readlist:r RT_PAREN SEMI
                             {: RESULT = new SimpleReadlistAST(r); :}
                         |   PRINT LEFT_PAREN printlist:p RT_PAREN SEMI
@@ -231,10 +235,6 @@ simple                  ::= name:n EQ expr:e SEMI
                             {: RESULT = new ReturnsimpleAST(); :}
                         |   RETURN expr:e SEMI
                             {: RESULT = new ReturnSimpleExprAST(e); :}
-                        |   name:n PLUSPLUS SEMI
-                            {: RESULT = new SimpleNameAST(n,true); :}
-                        |   name:n MINUSMINUS SEMI
-                            {: RESULT = new SimpleNameAST(n,false); :}
                         ;
 
 paramargs               ::= expr:e COMMA paramargs:p

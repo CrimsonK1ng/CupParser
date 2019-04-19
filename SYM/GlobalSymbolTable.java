@@ -71,6 +71,33 @@ class GlobalSymbolTable {
         throw new UndeclaredException(String.format("Variable %s is undeclared", name));
     }
 
+    public SymTableEntry lookup(ArrayList<String> names){
+        SymTableEntry cur = this.cur_entry;
+        while(cur != null){
+            for(String name : names){
+                if(cur.table.lookup(name) != null){
+                    return cur.table.lookup(name);
+                }
+            }
+            cur = cur.parent;
+        }
+
+        for(String name : names){
+            //The final check
+            if(name.equals(this.prog.name)){
+                return this.prog;
+            }
+        }
+
+        String name = names.get(0);
+        List<String> splitname = Arrays.asList(name.split("_"));
+
+        if(splitname.size() > 1){
+            throw new UndeclaredException(String.format("Function %s(%s) is undeclared", splitname.get(0), String.join(" ", splitname.subList(1,splitname.size()))));
+        }
+        throw new UndeclaredException(String.format("Variable %s is undeclared", name));
+    }
+
     public SymTableEntry lookup(MethoddeclsAST m) throws UndeclaredException{
         String method_args = "";
         ArrayList<TypeAST> t = m.method.arglist.getTypes();

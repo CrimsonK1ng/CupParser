@@ -1,0 +1,6 @@
+class t{
+
+    void main(){
+        char a = -'s';
+    }
+}

@@ -1,0 +1,68 @@
+final int i = 0;
+
+1
+MethodAST
+0
+MethodAST
+class p1 
+	final int i
+	function void test_int
+		int j
+
+	function int main_
+
+
+1
+lookup test_int
+compare test_int
+true
+false
+lookup test_int
+compare test_int
+true
+false
+void
+0
+lookup main_
+compare main_
+true
+false
+lookup main_
+compare main_
+true
+false
+int
+
+StatementAST@3551a94
+CLOSED 
+CURRRR rRR
+CURRRR StatementAST@3551a94
+CURRRR 
+
+StatementAST@52af6cff
+ReturnSimpleExprAST
+TCVisitor lookup i
+lookup i
+lookup i
+compare i
+true
+true
+lookup i
+compare i
+true
+true
+RETURN SymTableEntry@735b478
+CLOSED int
+ReturnSimpleExprAST
+CURRRR rRRint
+CURRRR StatementAST@52af6cff
+CURRRR 
+class p1 {
+	final int i = 0;
+	void test ( int j  ) {
+	}
+	int main (  ) {
+		test ( i );
+		return i;
+	}
+}

@@ -1,0 +1,11 @@
+class t 
+	function void main_
+		int i
+
+
+class t {
+	void main (  ) {
+		int i = -23;
+		i = ~i;
+	}
+}

@@ -57,7 +57,7 @@ class FielddeclsAST extends SimpleMethods implements AST{
         FielddeclsAST cur = this;
         while(cur.field != null){
             if(!cur.field.getType(e).equals(cur.type.getType(e))){
-                throw new TypeConflictException(String.format("Type %s cannot be applied to type %s", this.type.getType(e), this.field.getType(e)));
+                throw new TypeConflictException(String.format("Type %s must be same type as expression: %s", cur.type.getType(e), cur.field.getType(e)));
             }
 
             cur = cur.field_decls;

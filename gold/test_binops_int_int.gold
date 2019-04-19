@@ -1,0 +1,11 @@
+class p1 
+	function int test_
+		int a
+
+
+class p1 {
+	int test (  ) {
+		int a = 1 + 1;
+		return a;
+	}
+}

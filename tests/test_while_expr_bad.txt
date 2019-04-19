@@ -1,0 +1,7 @@
+class t{
+    int j(){
+        while(1.234 + 123){
+            return 2;
+        }
+    }
+}

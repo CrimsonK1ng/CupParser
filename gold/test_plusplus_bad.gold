@@ -1,0 +1,11 @@
+class pp 
+	function void t_
+		char b
+
+
+class pp {
+	void t (  ) {
+		char b = 'a';
+		b ++;
+	}
+}

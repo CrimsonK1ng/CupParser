@@ -130,7 +130,10 @@ class ASTVisitor implements Visitor{
     public void visit( SimpleFunctionAST a ){
 
     }
-    public void visit( SimpleNameAST a ){
+    public void visit( SimpleNamePlusPlusAST a ){
+
+    }
+    public void visit( SimpleNameMinusMinusAST a ){
 
     }
     public void visit( SimplePrintlineAST a ){
@@ -255,6 +258,9 @@ class ASTVisitor implements Visitor{
     }
 
     public SymTableEntry lookup(String s){
+        return null;
+    }
+    public SymTableEntry lookup(ArrayList<String> s){
         return null;
     }
 }

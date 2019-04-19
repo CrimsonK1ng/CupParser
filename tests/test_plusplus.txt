@@ -1,0 +1,9 @@
+class pp{
+    void test(){
+        int i = 23;
+        float j = 23.23;
+        j--
+        i++
+
+    }
+}

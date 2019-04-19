@@ -1,0 +1,9 @@
+class testMethod{
+    int test(int f){
+        return 1;
+    }
+
+    void main(){
+        test(23.234);
+    }
+}

@@ -52,6 +52,8 @@ digit               = [0-9]
 letter              = [A-Za-z]
 alphanumeric        = {letter}|{digit}
 intlit              = {digit}+
+minmin              = \-\-
+plusplus            = \+\+
 charlit             = \'[^\']*\'
 stringlit           = \"[^\"]*\"
 floatlit            = {digit}+\.{digit}+
@@ -81,8 +83,6 @@ read            { return newSym(sym.READ, "read"); }
 "*"             { return newSym(sym.TIMES, "*"); }
 "+"             { return newSym(sym.PLUS, "+"); }
 "-"             { return newSym(sym.MINUS, "-"); }
-"--"            { return newSym(sym.MINUSMINUS, "-"); }
-"++"            { return newSym(sym.PLUSPLUS, "-"); }
 "/"             { return newSym(sym.DIVIDE, "/"); }
 ";"             { return newSym(sym.SEMI, ";"); }
 ":"             { return newSym(sym.COLON, ":"); }
@@ -105,6 +105,8 @@ read            { return newSym(sym.READ, "read"); }
 "&&"            { return newSym(sym.AND, "&&"); }
 "?"             { return newSym(sym.QUES, "?"); }
 "~"             { return newSym(sym.BNOT, "~"); }
+{minmin}        { return newSym(sym.MM, "--"); }
+{plusplus}      { return newSym(sym.PP, "++"); }
 {identifier}    { return newSym(sym.IDENT, yytext()); }
 {intlit}        { return newSym(sym.INTLIT, yytext()); }
 {floatlit}      { return newSym(sym.FLOATLIT, yytext()); }

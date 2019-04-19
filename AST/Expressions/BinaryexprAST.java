@@ -39,41 +39,51 @@ class BinaryexprAST extends ExprAST implements AST{
     the first expr in a ? operation must be a bool or int value and both of the remaining arguments must have the same type (or one can be an int and one a float)
     */
     public String getType(Visitor e) throws TypeConflictException {
-        if(this.left.getType(e).equals(this.right.getType(e))){
-            if(this.left.getType(e).equals("string")){
+        String leftS = this.left.getType(e);
+        String rightS = this.right.getType(e);
+        if(leftS.equals(rightS)){
+            if(leftS.equals("string")){
                 if(!doesNotContain(this.binop.op, "*", "-", "/","||","&&"))
                     throw new TypeConflictException(String.format("String cannot be applied to %s", this.binop.op));
+                 return "bool";
             }
-            else if(this.left.getType(e).equals("char")){
+            else if(leftS.equals("char")){
                 if(!doesNotContain(this.binop.op, "*","-","/","+","||","&&"))
                     throw new TypeConflictException(String.format("Char cannot be applied to %s", this.binop.op));
+                return "bool";
             }
-            else if(this.left.getType(e).equals("float")){
+            else if(leftS.equals("float")){
                 if(!doesNotContain(this.binop.op, "||","&&"))
                     throw new TypeConflictException(String.format("Float cannot be applied to %s", this.binop.op));
+                else if(doesNotContain(this.binop.op, "+","-","/","*"))
+                    return "bool";
             }
-            else if(this.left.getType(e).equals("int")){
+            else if(leftS.equals("int")){
                 if(!doesNotContain(this.binop.op, "||","&&"))
                     throw new TypeConflictException(String.format("Int cannot be applied to %s", this.binop.op));
+                else if(doesNotContain(this.binop.op, "+","-","/","*"))
+                    return "bool";
             }
-            return "";
-        }else if((this.left.getType(e).equals("int") || this.left.getType(e).equals("float") )&& (this.right.getType(e).equals("float") || this.right.getType(e).equals("int"))){
+            return leftS;
+        }else if((leftS.equals("int") || leftS.equals("float") )&& (rightS.equals("float") || rightS.equals("int"))){
             if(!doesNotContain(this.binop.op, "||", "&&"))
                 throw new TypeConflictException(String.format("Int and Float cannot be applied to %s", this.binop.op));
-            return "";
+            else if(doesNotContain(this.binop.op, "+","-","/","*"))
+                return "bool";
+            return "float";
         }
-        else if((this.left.getType(e).equals("int") || this.left.getType(e).equals("bool") )&& (this.right.getType(e).equals("int") || this.right.getType(e).equals("bool"))){
+        else if((leftS.equals("int") || leftS.equals("bool") )&& (rightS.equals("int") || rightS.equals("bool"))){
             if(!doesNotContain(this.binop.op, "||", "&&"))
                 throw new TypeConflictException(String.format("Int and Bool cannot be applied to %s", this.binop.op));
-            return "";
+            return "bool";
         }
         else if(this.binop.op.equals("||")){
-            throw new TypeConflictException(String.format("%s cannot be OR'ed with %s", this.left.getType(e), this.right.getType(e)));
+            throw new TypeConflictException(String.format("%s cannot be OR'ed with %s", leftS, rightS));
         }
         else if(this.binop.op.equals("&&")){
-            throw new TypeConflictException(String.format("%s cannot be AND'ed with %s", this.left.getType(e), this.right.getType(e)));
+            throw new TypeConflictException(String.format("%s cannot be AND'ed with %s", leftS, rightS));
         }
         else
-            throw new TypeConflictException(String.format("Shit Fucked %s cannot be AND'ed with %s", this.left.getType(e), this.right.getType(e)));
+            throw new TypeConflictException(String.format("%s cannot be %s'ed with %s", leftS,this.binop.op, rightS));
     }
 }

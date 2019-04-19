@@ -1,3 +1,24 @@
+final int i ;
+
+3
+MethodAST
+char mynameis ;
+
+0
+MethodAST
+1
+MethodAST
+int i = (b ? d : c);
+
+0
+MethodAST
+2
+MethodAST
+float c = (int) a + b;
+final float c = a + b;
+
+final float c = a + b;
+
 class anIdent {
 	final int i ;
 	void main ( char s, int j, char kk  ) {
@@ -66,7 +87,7 @@ class anIdent {
 		c = a * b;
 		c = a / b;
 		c = a || b;
-		c = a * b;
+		c = a && b;
 		c = a < b;
 		c = a > b;
 		c = a <= b;
@@ -78,4 +99,3 @@ class anIdent {
 		somemethod ( ~12312 );
 	};
 }
-

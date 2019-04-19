@@ -1,0 +1,10 @@
+class t 
+	function void main_
+		bool c
+
+
+class t {
+	void main (  ) {
+		bool c = 23 && 41;
+	}
+}

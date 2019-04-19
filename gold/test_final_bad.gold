@@ -1,0 +1,39 @@
+final int i = 10;
+
+0
+MethodAST
+class p1 
+	final int i
+	function int main_
+
+
+0
+lookup main_
+compare main_
+true
+false
+lookup main_
+compare main_
+true
+false
+int
+
+StatementAST@35fb3008
+TCVisitor lookup i
+lookup i
+lookup i
+compare i
+true
+true
+lookup i
+compare i
+true
+true
+RETURN SymTableEntry@54a097cc
+name.id.name
+class p1 {
+	final int i = 10;
+	int main (  ) {
+		i = 22;
+	}
+}

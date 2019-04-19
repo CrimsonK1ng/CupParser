@@ -30,7 +30,7 @@ class SimpleAssignAST extends SimplestateAST{
         }
         if (!name.getType(e).equals(expr.getType(e))){
             throw new TypeConflictException(String.format(
-            "Name %s Conflicts with Expr: %s", this.name.toString(), this.expr.toString())
+            "Type %s, Name %s conflicts with type: %s expr: %s", this.name.getType(e), this.name.toString(), this.expr.getType(e), this.expr.toString())
             );
         }
         return "";

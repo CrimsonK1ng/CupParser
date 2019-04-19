@@ -1,0 +1,9 @@
+class ps{
+    int main(){
+        int a = 1;
+        a = "123";
+        if( a == 2){
+            return a;
+        }
+    }
+}

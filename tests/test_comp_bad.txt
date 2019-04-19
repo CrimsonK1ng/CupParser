@@ -1,0 +1,8 @@
+class t{
+    void main(){
+        bool a = 1 < "bad";
+        a = 2.2 > 23;
+        a = "alek" <> "balek";
+        a = 'a' == 'b';
+    }
+}

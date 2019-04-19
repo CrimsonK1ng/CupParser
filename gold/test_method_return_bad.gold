@@ -1,0 +1,29 @@
+0
+MethodAST
+class prog 
+	function int main_
+
+
+0
+int
+CLOSED
+ReturnSimpleExprAST
+SingleexprAST string
+string
+
+CLOSED
+ReturnSimpleExprAST
+SingleexprAST string
+CLOSED
+ReturnSimpleExprAST
+SingleexprAST string
+string
+
+CLOSED
+ReturnSimpleExprAST
+SingleexprAST string
+class prog {
+	int main (  ) {
+		return "bad";
+	}
+}

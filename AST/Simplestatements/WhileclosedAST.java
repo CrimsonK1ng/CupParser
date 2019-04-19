@@ -19,7 +19,12 @@ class WhileclosedAST extends ClosedstateAST implements AST{
                 + String.format("%s", this.close.toString(indent+1)));
     }
 
-    public String getType(Visitor e){
-        return this.close.getType(e);
+    public String getType(Visitor e) throws TypeConflictException{
+        if(this.expr.getType(e).equals("int") || this.expr.getType(e).equals("bool"))
+            return this.close.getType(e);
+        else
+            throw new TypeConflictException(String.format(
+                "While loop requires boolean based expression  not: %s", this.expr.getType(e)
+            ));
     }
 }

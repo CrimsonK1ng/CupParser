@@ -1,0 +1,15 @@
+class testMethod 
+	function int test_int
+		int f
+
+	function void main_
+
+
+class testMethod {
+	int test ( int f  ) {
+		return 1;
+	}
+	void main (  ) {
+		test ( 23.23 );
+	}
+}

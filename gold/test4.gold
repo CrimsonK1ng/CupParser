@@ -1,6 +1,43 @@
+4
+MethodAST
+int i = 2340;
+
+class Another 
+	function int main_int_int_char_char
+		int i
+		int j
+		char k
+		char c
+		statement statement_body_-956739525 
+			int i
+			statement statement_body_1371125483 
+
+			statement statement_body_-2139220328 
+				statement statement_body_1457406111 
+
+				statement statement_body_-838723831 
+
+
+
+
+
+4
+lookup main_int_int_char_char
+lookup main_int_int_char_char
+lookup main_int_int_char_char
+lookup main_int_int_char_char
+int
+CLOSED
+balognia
+lookup balognia
+lookup i
+lookup j
+lookup k
+lookup c
+lookup statement_body_-956739525
 class Another {
 	int main ( int i, int j, char k, char c  ) {
-		if ( (i < j) * (k < c) )
+		if ( (i < j) && (k < c) )
 			balognia = "balogne";
 		else
 			makeda = "money";

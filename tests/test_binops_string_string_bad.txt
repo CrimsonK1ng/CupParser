@@ -1,0 +1,7 @@
+class p1{
+    void test(){
+        if(("al" + 'e') == "ale"){
+            printline();
+        }
+    }
+}

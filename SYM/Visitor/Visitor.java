@@ -1,3 +1,4 @@
+import java.util.*;
 interface Visitor {
     public void visit( ArgdeclsAST a );
     public void visit( ArgAST a );
@@ -24,7 +25,8 @@ interface Visitor {
     public void visit( SimpleBodyAST a );
     public void visit( SimpleFunctionArgsAST a );
     public void visit( SimpleFunctionAST a );
-    public void visit( SimpleNameAST a );
+    public void visit( SimpleNamePlusPlusAST a );
+    public void visit( SimpleNameMinusMinusAST a );
     public void visit( SimplePrintlineAST a );
     public void visit( SimplePrintlistAST a );
     public void visit( SimpleNewStateAST a );
@@ -57,4 +59,5 @@ interface Visitor {
     public void visit( ParameterArgsAST a );
     public void exit();
     public SymTableEntry lookup(String name);
+    public SymTableEntry lookup(ArrayList<String> names);
 }

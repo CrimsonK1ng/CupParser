@@ -24,7 +24,7 @@ class UnaryexprAST extends ExprAST implements AST{
         else if(this.operator.equals("+") && (this.expr.getType(e).equals("float") || this.expr.getType(e).equals("int")))
             return this.expr.getType(e);
         else
-            throw new TypeConflictException(String.format("%s cannot be applied to op %s", this.expr.getType(e), this.operator));
+            throw new TypeConflictException(String.format("Unary op: %s cannot be applied to %s", this.operator, this.expr.getType(e)));
     }
 
 }

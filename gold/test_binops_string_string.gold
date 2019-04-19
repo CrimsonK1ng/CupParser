@@ -1,0 +1,14 @@
+class p1 
+	function void test_
+		statement statement_body_2143095083 
+
+
+
+class p1 {
+	void test (  ) {
+		if ( "al" + "ek" == "alek" )
+		{
+			printline ( );
+		}
+	}
+}
