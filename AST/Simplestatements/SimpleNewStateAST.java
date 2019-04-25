@@ -17,4 +17,7 @@ class SimpleNewStateAST extends ClosedstateAST {
     public String getType(Visitor e){
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

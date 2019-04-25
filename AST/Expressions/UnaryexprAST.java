@@ -26,5 +26,8 @@ class UnaryexprAST extends ExprAST implements AST{
         else
             throw new TypeConflictException(String.format("Unary op: %s cannot be applied to %s", this.operator, this.expr.getType(e)));
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 
 }

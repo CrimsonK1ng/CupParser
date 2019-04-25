@@ -17,4 +17,7 @@ class SimplestateAST extends ClosedstateAST implements AST{
     public String getType(Visitor v){
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

@@ -21,4 +21,7 @@ class BooleanAST extends ExpressionLiterals implements AST{
     public String getType(Visitor v){
         return "bool";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

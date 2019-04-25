@@ -17,4 +17,7 @@ class ArgarrayAST extends ArgAST implements AST{
     public String getType(Visitor e){
         return this.type.type;
     }
+    public Object getValue(Visitor v){
+        return null;
+    }
 }

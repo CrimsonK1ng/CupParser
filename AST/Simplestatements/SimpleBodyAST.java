@@ -29,4 +29,7 @@ class SimpleBodyAST extends SimplestateAST{
         return this.stmtlist.getType(e);
         //return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

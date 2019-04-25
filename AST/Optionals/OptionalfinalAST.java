@@ -21,4 +21,7 @@ class OptionalfinalAST implements AST{
     public String getType(Visitor e){
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

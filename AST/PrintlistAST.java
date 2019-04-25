@@ -40,4 +40,7 @@ class PrintlistAST implements AST{
         }
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

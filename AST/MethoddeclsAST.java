@@ -56,4 +56,7 @@ class MethoddeclsAST extends SimpleMethods implements AST{
         else
             return returnType;
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

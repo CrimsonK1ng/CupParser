@@ -35,4 +35,7 @@ class SimpleAssignAST extends SimplestateAST{
         }
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

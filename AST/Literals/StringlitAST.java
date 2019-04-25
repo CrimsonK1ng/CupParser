@@ -20,4 +20,7 @@ class StringlitAST  extends ExpressionLiterals implements AST {
         return "string";
     }
 
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

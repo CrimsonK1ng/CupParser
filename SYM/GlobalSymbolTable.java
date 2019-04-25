@@ -49,6 +49,37 @@ class GlobalSymbolTable {
         this.scopeCount += 1;
     }
 
+    public void updateEntry(String name, Object value){
+        SymTableEntry cur = this.cur_entry;
+        while(cur != null){
+            if(cur.table.lookup(name) != null){
+                SymTableEntry tmp = cur.table.lookup(name);
+                if(tmp.type.type.equals("char")){
+                    tmp.type.value = (Character) value;
+                }
+                else if(tmp.type.type.equals("int")){
+                    tmp.type.value = (Integer) value;
+                }
+                else if(tmp.type.type.equals("float")){
+                    tmp.type.value = (Float) value;
+                }
+                else if(tmp.type.type.equals("bool")){
+                    tmp.type.value = (Boolean) value;
+                }
+                else if(tmp.type.type.equals("void")){
+                    throw new TypeConflictException(String.format("Void cast of value %s", value));
+                }
+            }
+            cur = cur.parent;
+        }
+
+        //The final check
+        if(name.equals(this.prog.name)){
+            throw new UndeclaredException(String.format("Variable %s references Program is undeclared", name));
+        }
+
+    }
+
     public SymTableEntry lookup(String name){
         SymTableEntry cur = this.cur_entry;
         while(cur != null){

@@ -47,5 +47,8 @@ class IdentAST  extends ExpressionLiterals implements AST {
   public String toString() {
     return name;
   }
+    public Object getValue(Visitor v){ return null;
+
+    }
 
 }

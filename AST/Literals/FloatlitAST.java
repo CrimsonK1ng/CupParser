@@ -22,4 +22,7 @@ class FloatlitAST  extends ExpressionLiterals implements AST {
   public String getType(Visitor v){
       return "float";
   }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

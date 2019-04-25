@@ -26,4 +26,7 @@ class ArgAST implements AST{
     public String getType(){
         return this.type.type;
     }
+    public Object getValue(Visitor v){
+        return null;
+    }
 }

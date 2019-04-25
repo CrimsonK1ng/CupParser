@@ -19,4 +19,7 @@ class SingleexprAST extends ExprAST implements AST{
     public String getType(Visitor e){
         return this.expr.getType(e);
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

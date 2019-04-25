@@ -69,4 +69,7 @@ class FielddeclsAST extends SimpleMethods implements AST{
         return "";
         //return this.type.getType(e);
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

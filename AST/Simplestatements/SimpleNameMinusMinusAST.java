@@ -26,4 +26,7 @@ class SimpleNameMinusMinusAST extends SimplestateAST implements AST{
             "Cannot -- type %s", this.name.getType(e)
         ));
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

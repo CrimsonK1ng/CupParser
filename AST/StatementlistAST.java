@@ -45,4 +45,9 @@ class StatementlistAST extends SimpleMethods implements AST{
             return "void";
         return ret;
     }
+
+
+    public Object getValue(Visitor v){ return null;
+        
+    }
 }

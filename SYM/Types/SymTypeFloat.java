@@ -1,8 +1,7 @@
 class SymTypeFloat extends SymType{
-    public String type;
-    public Float value;
     public SymTypeFloat(){
         this.type = "float";
+        this.value = 0;
     }
 
     public SymTypeFloat(Float value){
@@ -11,7 +10,7 @@ class SymTypeFloat extends SymType{
     }
 
     public Float getValue(){
-        return this.value;
+        return (Float) this.value;
     }
 
     public String getType(){

@@ -34,4 +34,7 @@ class ExprAST implements AST{
         return this.type;
     }
 
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

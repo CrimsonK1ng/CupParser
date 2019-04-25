@@ -7,4 +7,7 @@ class SimpleMethods{
         return base;
     }
 
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

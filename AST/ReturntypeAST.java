@@ -33,4 +33,7 @@ class ReturntypeAST implements AST {
             return type.getType(e);
     }
 
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

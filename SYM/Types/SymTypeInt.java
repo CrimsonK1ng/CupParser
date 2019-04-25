@@ -1,9 +1,8 @@
 class SymTypeInt extends SymType{
-    public String type;
-    public Integer value;
 
     public SymTypeInt(){
         this.type = "int";
+        this.value = 0;
     }
 
     public SymTypeInt(Integer value){
@@ -12,7 +11,7 @@ class SymTypeInt extends SymType{
     }
 
     public Integer getValue(){
-        return this.value;
+        return (Integer) this.value;
     }
 
     public String getType(){

@@ -10,4 +10,7 @@ abstract class ExpressionLiterals extends ExprAST implements AST{
     public String getType(Visitor e){
         return type;
     };
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

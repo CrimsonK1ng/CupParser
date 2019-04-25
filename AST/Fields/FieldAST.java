@@ -20,4 +20,7 @@ class FieldAST implements AST{
             return this.expr.getType(e);
         return "void";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

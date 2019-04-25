@@ -18,4 +18,7 @@ class CastexprAST extends ExprAST implements AST{
         //TODO this is probably really screwed up
         return type;
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

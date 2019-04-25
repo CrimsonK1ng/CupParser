@@ -26,4 +26,7 @@ class ClosedstateAST extends StatementAST implements AST{
             return this.simple.getType(e);
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

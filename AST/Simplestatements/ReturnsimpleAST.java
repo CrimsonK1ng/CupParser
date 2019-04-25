@@ -19,4 +19,7 @@ class ReturnsimpleAST extends SimplestateAST implements AST{
     public String getType(Visitor e){
         return "void";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

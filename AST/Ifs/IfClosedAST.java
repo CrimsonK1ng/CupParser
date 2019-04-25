@@ -40,4 +40,7 @@ class IfClosedAST extends ClosedstateAST implements AST{
             );
 
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

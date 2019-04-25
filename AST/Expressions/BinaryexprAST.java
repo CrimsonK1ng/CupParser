@@ -86,4 +86,7 @@ class BinaryexprAST extends ExprAST implements AST{
         else
             throw new TypeConflictException(String.format("%s cannot be %s'ed with %s", leftS,this.binop.op, rightS));
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

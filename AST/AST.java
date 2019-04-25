@@ -7,5 +7,6 @@
 interface AST {
     public String toString();   // already inherited from Object
     public void accept(Visitor v);
-    public String getType(Visitor e) ;
+    public String getType(Visitor v);
+    public Object getValue(Visitor v);
 }

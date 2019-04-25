@@ -22,4 +22,8 @@ class WhileopenstateAST extends OpenstateAST implements AST{
     public String getType(Visitor e){
         return this.open.getType(e);
     }
+
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

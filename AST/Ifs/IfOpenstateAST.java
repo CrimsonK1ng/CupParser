@@ -28,4 +28,7 @@ class IfOpenstateAST extends OpenstateAST implements AST{
     public String getType(Visitor v){
         return this.state.getType(v);
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

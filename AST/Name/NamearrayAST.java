@@ -34,4 +34,7 @@ class NamearrayAST extends NameAST implements AST{
         }
         return this.id.getType(e, true);
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

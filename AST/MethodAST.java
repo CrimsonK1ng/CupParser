@@ -36,4 +36,7 @@ class MethodAST extends SimpleMethods implements AST{
     public String getType(Visitor e) throws TypeConflictException{
         return statelist.getType(e);
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }

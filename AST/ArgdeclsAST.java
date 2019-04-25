@@ -55,4 +55,7 @@ class ArgdeclsAST implements AST{
     public String getType(Visitor e) throws TypeConflictException{
         return "";
     }
+    public Object getValue(Visitor v){ return null;
+
+    }
 }
