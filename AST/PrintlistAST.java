@@ -40,7 +40,15 @@ class PrintlistAST implements AST{
         }
         return "";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        System.out.print(this.expr.getValue(v));
+        if(this.plist != null){
+            System.out.print(" ");
+            this.plist.getValue(v);
+        }
+        else{
+            System.out.println("");
+        }
+        return null;
     }
 }

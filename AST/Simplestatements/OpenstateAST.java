@@ -19,7 +19,12 @@ abstract class OpenstateAST extends StatementAST implements AST{
             return this.close.getType(e);
         return "";
     }
-    public Object getValue(Visitor v){ return null;
+    public Object getValue(Visitor v){
+        if(this.open != null)
+            return this.open.getValue(v);
+        else if(this.close != null)
+            return this.close.getValue(v);
+        return null;
 
     }
 }

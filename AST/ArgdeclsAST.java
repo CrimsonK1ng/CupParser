@@ -55,7 +55,11 @@ class ArgdeclsAST implements AST{
     public String getType(Visitor e) throws TypeConflictException{
         return "";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        this.arg.getValue(v);
+        if(this.arglist != null){
+            this.arglist.getValue(v);
+        }
+        return null;
     }
 }

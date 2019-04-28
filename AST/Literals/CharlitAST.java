@@ -21,7 +21,7 @@ class CharlitAST extends ExpressionLiterals implements AST {
     public String getType(Visitor v){
         return "char";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        return this.ch;
     }
 }

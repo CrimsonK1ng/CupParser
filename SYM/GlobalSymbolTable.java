@@ -54,21 +54,22 @@ class GlobalSymbolTable {
         while(cur != null){
             if(cur.table.lookup(name) != null){
                 SymTableEntry tmp = cur.table.lookup(name);
-                if(tmp.type.type.equals("char")){
-                    tmp.type.value = (Character) value;
+                if(tmp.type.getType().equals("char")){
+                    tmp.type.setValue((Character) value);
                 }
-                else if(tmp.type.type.equals("int")){
-                    tmp.type.value = (Integer) value;
+                else if(tmp.type.getType().equals("int")){
+                    tmp.type.setValue((Integer) value);
                 }
-                else if(tmp.type.type.equals("float")){
-                    tmp.type.value = (Float) value;
+                else if(tmp.type.getType().equals("float")){
+                    tmp.type.setValue((Float) value);
                 }
-                else if(tmp.type.type.equals("bool")){
-                    tmp.type.value = (Boolean) value;
+                else if(tmp.type.getType().equals("bool")){
+                    tmp.type.setValue((Boolean) value);
                 }
-                else if(tmp.type.type.equals("void")){
+                else if(tmp.type.getType().equals("void")){
                     throw new TypeConflictException(String.format("Void cast of value %s", value));
                 }
+                return;
             }
             cur = cur.parent;
         }

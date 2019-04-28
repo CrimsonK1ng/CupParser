@@ -1,5 +1,5 @@
 class BooleanAST extends ExpressionLiterals implements AST{
-    public boolean is;
+    public Boolean is;
 
     public BooleanAST(boolean b){
         super("bool");
@@ -21,7 +21,7 @@ class BooleanAST extends ExpressionLiterals implements AST{
     public String getType(Visitor v){
         return "bool";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        return this.is;
     }
 }

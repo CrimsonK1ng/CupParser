@@ -1,5 +1,5 @@
 class SymTypeBool extends SymType{
-
+    public Boolean value;
     public SymTypeBool(){
         this.type = "bool";
         this.value = false;
@@ -12,6 +12,10 @@ class SymTypeBool extends SymType{
 
     public Boolean getValue(){
         return (Boolean) this.value;
+    }
+
+    public void setValue(Object b){
+        this.value = (Boolean) b;
     }
 
     public String getType(){

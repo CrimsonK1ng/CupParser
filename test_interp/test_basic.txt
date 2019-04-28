@@ -1,0 +1,8 @@
+class program{
+
+    void main(){
+        print("Hello sweet nothing");
+        return;
+    }
+
+}

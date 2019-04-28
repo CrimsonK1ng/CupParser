@@ -8,6 +8,10 @@ class SymTypeVoid extends SymType{
         return null;
     }
 
+    public void setValue(Object o){
+        this.value = null;
+    }
+
     public String getType(){
         return this.type;
     }

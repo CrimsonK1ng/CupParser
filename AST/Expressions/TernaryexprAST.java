@@ -34,7 +34,12 @@ class TernaryexprAST extends ExprAST implements AST{
         }
         throw new TypeConflictException(String.format("Error in ternary expression %s, returns type: %s and %s", this.toString(),this.true_expr.getType(e), this.false_expr.getType(e)));
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        if((Boolean) this.expr1.getValue(v)){
+            return this.true_expr.getValue(v);
+        }
+        else {
+            return this.false_expr.getValue(v);
+        }
     }
 }

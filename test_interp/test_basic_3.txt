@@ -1,0 +1,6 @@
+class prog{
+    int i = 123;
+    void main(){
+        print(i);
+    }
+}

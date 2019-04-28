@@ -18,7 +18,7 @@ class FieldArrayAST extends FieldAST implements AST{
     public String getType(Visitor e){
         return "array";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        return this.num;
     }
 }

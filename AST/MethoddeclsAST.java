@@ -56,7 +56,19 @@ class MethoddeclsAST extends SimpleMethods implements AST{
         else
             return returnType;
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        //v.lookup(this);
+        try{
+            if(this.returns.isvoid){
+                this.method.getValue(v);
+                return null;
+            }
+            return this.method.getValue(v);
+        } catch(ReturnValueException e) {
+            return e.value;
+        } catch(ReturnException e){
+            //optional return;
+            return null;
+        }
     }
 }

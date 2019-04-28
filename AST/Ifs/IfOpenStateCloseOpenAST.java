@@ -36,7 +36,12 @@ class IfOpenStateCloseOpenAST extends OpenstateAST{
                 String.format("Return type conflict %s %s", this.open.getType(v), this.closed.getType(v))
             );
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        if((Boolean) this.expr.getValue(v)){
+            this.closed.getValue(v);
+        } else{
+            this.open.getValue(v);
+        }
+        return null;
     }
 }

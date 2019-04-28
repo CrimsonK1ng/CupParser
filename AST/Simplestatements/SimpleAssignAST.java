@@ -35,7 +35,8 @@ class SimpleAssignAST extends SimplestateAST{
         }
         return "";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        v.updateEntry(this.name.id.name, this.expr.getValue(v));
+        return null;
     }
 }

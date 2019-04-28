@@ -260,7 +260,11 @@ class ASTVisitor implements Visitor{
     public SymTableEntry lookup(String s){
         return null;
     }
+    public SymTableEntry lookup(MethoddeclsAST m){
+        return null;
+    }
     public SymTableEntry lookup(ArrayList<String> s){
         return null;
     }
+    public void updateEntry(String n, Object o){};
 }

@@ -1,5 +1,5 @@
 class SymTypeInt extends SymType{
-
+    public Integer value;
     public SymTypeInt(){
         this.type = "int";
         this.value = 0;
@@ -12,6 +12,10 @@ class SymTypeInt extends SymType{
 
     public Integer getValue(){
         return (Integer) this.value;
+    }
+
+    public void setValue(Object b){
+        this.value = (Integer) b;
     }
 
     public String getType(){

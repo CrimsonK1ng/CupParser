@@ -38,8 +38,12 @@ class StatementAST extends SimpleMethods implements AST{
             return this.close.getType(e);
         return "";
     }
-    
-    public Object getValue(Visitor v){ return null;
 
+    public Object getValue(Visitor v){
+        if(this.open != null)
+            this.open.getValue(v);
+        if(this.close != null)
+            this.close.getValue(v);
+        return null;
     }
 }

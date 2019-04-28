@@ -1,5 +1,6 @@
 class SymTypeChar extends SymType{
 
+    public Character value;
     public SymTypeChar(){
         this.type = "char";
         this.value = '0';
@@ -12,6 +13,10 @@ class SymTypeChar extends SymType{
 
     public Character getValue(){
         return (Character) this.value;
+    }
+
+    public void setValue(Object b){
+        this.value = (Character) b;
     }
 
     public String getType(){

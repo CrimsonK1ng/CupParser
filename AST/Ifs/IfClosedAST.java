@@ -40,7 +40,12 @@ class IfClosedAST extends ClosedstateAST implements AST{
             );
 
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        if((Boolean) this.expr.getValue(v)){
+            this.close1.getValue(v);
+        } else {
+            this.close2.getValue(v);
+        }
+        return null;
     }
 }

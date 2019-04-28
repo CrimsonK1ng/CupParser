@@ -23,8 +23,8 @@ class BinaryOp implements AST {
     public String getType(Visitor e) {
         return "";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        return null;
     }
 
 }

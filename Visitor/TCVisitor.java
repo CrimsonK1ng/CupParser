@@ -197,7 +197,12 @@ class TCVisitor implements Visitor{
         return e;
     }
 
+    public SymTableEntry lookup(MethoddeclsAST m){
+        return null;
+    }
+    
     public SymTableEntry lookup(ArrayList<String> names){
         return this.gst.lookup(names);
     }
+    public void updateEntry(String n, Object o){};
 }

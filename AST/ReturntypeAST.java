@@ -5,10 +5,12 @@ class ReturntypeAST implements AST {
 
     public ReturntypeAST(TypeAST t) {
         this.type = t;
+        this.isvoid = false;
     }
 
     public ReturntypeAST(boolean isvoid) {
         this.isvoid = isvoid;
+        this.type = null;
     }
 
 
@@ -33,7 +35,7 @@ class ReturntypeAST implements AST {
             return type.getType(e);
     }
 
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        return null;
     }
 }

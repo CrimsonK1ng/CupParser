@@ -21,7 +21,7 @@ class IntlitAST  extends ExpressionLiterals implements AST {
       public String getType(Visitor v){
           return "int";
       }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        return this.number;
     }
 }

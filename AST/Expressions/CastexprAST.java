@@ -18,7 +18,17 @@ class CastexprAST extends ExprAST implements AST{
         //TODO this is probably really screwed up
         return type;
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v) {
+        switch(this.type){
+            case "int":
+                return (Integer) this.expr.getValue(v);
+            case "char":
+                return (Character) this.expr.getValue(v);
+            case "float":
+                return (Float) this.expr.getValue(v);
+            case "bool":
+                return (Boolean) this.expr.getValue(v);
+        }
+        return null; //something fd up;
     }
 }

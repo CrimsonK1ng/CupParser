@@ -58,7 +58,8 @@ class SimpleFunctionArgsAST extends SimplestateAST implements AST{
 
         return null;
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        //Not gonna deal with this right now.
+        return null;
     }
 }

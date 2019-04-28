@@ -25,7 +25,12 @@ class SimpleNamePlusPlusAST extends SimplestateAST implements AST{
             "Cannot ++ type %s", this.name.getType(e)
         ));
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        SymTableEntry e = v.lookup(this.name.id.name);
+        if(e.type.type.equals("int"))
+            v.updateEntry(this.name.id.name, ((Integer) e.type.getValue())+1);
+        else
+            v.updateEntry(this.name.id.name, ((Float) e.type.getValue())+1);
+        return null;
     }
 }

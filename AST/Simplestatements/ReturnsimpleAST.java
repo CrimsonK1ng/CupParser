@@ -17,9 +17,9 @@ class ReturnsimpleAST extends SimplestateAST implements AST{
 
     @Override
     public String getType(Visitor e){
-        return "void";
+        return "";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        throw new ReturnException(); //Yay abuse of powers
     }
 }

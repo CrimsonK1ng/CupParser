@@ -25,7 +25,8 @@ class SimpleFunctionAST extends SimplestateAST implements AST{
         }
         return null; //This should throw an exception. NULL IS HERE IN CASE
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        //TODO not gonna deal with this
+        return null;
     }
 }

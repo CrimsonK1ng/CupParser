@@ -39,7 +39,7 @@ class ReadlistAST implements AST{
         }
         return "";
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        return null;
     }
 }

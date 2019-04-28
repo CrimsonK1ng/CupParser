@@ -23,7 +23,11 @@ class WhileopenstateAST extends OpenstateAST implements AST{
         return this.open.getType(e);
     }
 
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        while((Boolean)this.expr.getValue(v)){
+            System.out.println("WhileClosed :(");
+            this.open.getValue(v);
+        }
+        return null;
     }
 }

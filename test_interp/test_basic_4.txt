@@ -1,0 +1,10 @@
+class prog{
+
+    int i = 123;
+    char a = 'a';
+    
+    void main(){
+        int i = 5454;
+        print(i, a);
+    }
+}

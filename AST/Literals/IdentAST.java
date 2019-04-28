@@ -44,11 +44,13 @@ class IdentAST  extends ExpressionLiterals implements AST {
         v.visit(this);
     }
 
-  public String toString() {
-    return name;
-  }
-    public Object getValue(Visitor v){ return null;
+    public String toString() {
+        return name;
+    }
 
+    public Object getValue(Visitor v) {
+        SymTableEntry ent = v.lookup(this.name);
+        return ent.type.getValue();
     }
 
 }

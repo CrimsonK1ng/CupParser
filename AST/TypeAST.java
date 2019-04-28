@@ -19,7 +19,7 @@ class TypeAST implements AST{
         return type;
     }
 
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        return null;
     }
 }

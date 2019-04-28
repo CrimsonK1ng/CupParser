@@ -34,7 +34,7 @@ class StatementlistAST extends SimpleMethods implements AST{
             if(ret.isEmpty()){
                 ret = temp;
             }
-            else if(!ret.equals(temp)){
+            else if(!ret.equals(temp) && !ret.equals("void")){
                 throw new TypeConflictException(
                     String.format("Return type conflict %s %s", ret, temp)
                 );
@@ -47,7 +47,13 @@ class StatementlistAST extends SimpleMethods implements AST{
     }
 
 
-    public Object getValue(Visitor v){ return null;
-        
+    public Object getValue(Visitor v){
+        if(this.state != null){
+            this.state.getValue(v);
+        }
+        if(this.slist != null){
+            this.slist.getValue(v);
+        }
+        return null;
     }
 }

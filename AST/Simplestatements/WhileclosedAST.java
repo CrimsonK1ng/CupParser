@@ -27,7 +27,11 @@ class WhileclosedAST extends ClosedstateAST implements AST{
                 "While loop requires boolean based expression  not: %s", this.expr.getType(e)
             ));
     }
-    public Object getValue(Visitor v){ return null;
-
+    public Object getValue(Visitor v){
+        while((Boolean) this.expr.getValue(v)){
+            System.out.println("WhileClosed :(");
+            this.close.getValue(v);
+        }
+        return null;
     }
 }

@@ -86,7 +86,227 @@ class BinaryexprAST extends ExprAST implements AST{
         else
             throw new TypeConflictException(String.format("%s cannot be %s'ed with %s", leftS,this.binop.op, rightS));
     }
-    public Object getValue(Visitor v){ return null;
 
+    public Float applyOp(Float l, Float r, String op){
+        switch(op){
+            case "+":
+                return l + r;
+            case "-":
+                return l - r;
+            case "/":
+                return l / r;
+            case "*":
+                return l * r;
+            default:
+                return null;
+        }
+
+    }
+
+    public Integer applyOp(Integer l, Integer r, String op){
+        switch(op){
+            case "+":
+                return l + r;
+            case "-":
+                return l - r;
+            case "/":
+                return l / r;
+            case "*":
+                return l * r;
+            default:
+                return null;
+        }
+
+    }
+    public Boolean compOp(Integer l, Integer r, String op){
+        switch(op){
+            case "<":
+                return l < r;
+            case ">":
+                return l > r;
+            case "<=":
+                return l <= r;
+            case ">=":
+                return l >= r;
+            case "<>":
+                return l != r;
+            case "==":
+                return l == r;
+            default:
+                return null;
+        }
+    }
+    public Boolean compOp(Character l, Character r, String op){
+        switch(op){
+            case "<":
+                return l < r;
+            case ">":
+                return l > r;
+            case "<=":
+                return l <= r;
+            case ">=":
+                return l >= r;
+            case "<>":
+                return l != r;
+            case "==":
+                return l == r;
+            default:
+                return null;
+        }
+    }
+    public Boolean compOp(Float l, Float r, String op){
+        switch(op){
+            case "<":
+                return l < r;
+            case ">":
+                return l > r;
+            case "<=":
+                return l <= r;
+            case ">=":
+                return l >= r;
+            case "<>":
+                return l != r;
+            case "==":
+                return l == r;
+            default:
+                return null;
+        }
+    }
+    public Boolean compOp(String l, String r, String op){
+        switch(op){
+            case "<":
+                if(l.compareTo(r) > 0){
+                    return true;
+                }
+                return false;
+            case ">":
+                if(l.compareTo(r) < 0){
+                    return true;
+                }
+                return false;
+            case "<=":
+                if(l.compareTo(r) >= 0){
+                    return true;
+                }
+                return false;
+            case ">=":
+                if(l.compareTo(r) <= 0){
+                    return true;
+                }
+                return false;
+            case "<>":
+                if(l.compareTo(r) != 0){
+                    return true;
+                }
+                return false;
+            case "==":
+                if(l.compareTo(r) == 0){
+                    return true;
+                }
+                return false;
+            default:
+                return null;
+        }
+    }
+
+    public Boolean compOp(Boolean l, Boolean r, String op){
+        switch(op){
+            case "<":
+                if(r && !l)
+                    return true;
+                return false;
+            case ">":
+                if(l && !r)
+                    return true;
+                return false;
+            case "<=":
+                if(r)
+                    return true;
+                else if(!r && !l)
+                    return true;
+                return false;
+            case ">=":
+                if(l)
+                    return true;
+                else if(!l && !r)
+                    return true;
+                return false;
+            case "<>":
+                return l != r;
+            case "==":
+                return l == r;
+            case "||":
+                return l || r;
+            case "&&":
+                return l && r;
+            default:
+                return null;
+        }
+    }
+
+
+    public Object getValue(Visitor v){
+        String leftS = this.left.getType(v);
+        String rightS = this.right.getType(v);
+
+        if(leftS.equals(rightS)){
+            if(leftS.equals("int")){
+                Integer a = (Integer) this.left.getValue(v);
+                Integer b = (Integer) this.right.getValue(v);
+                Integer ret = applyOp(a, b, this.binop.op);
+                if(ret != null){
+                    return ret;
+                }
+                return compOp(a,b,this.binop.op);
+            }
+            else if(leftS.equals("float")){
+                Float a = (Float) this.left.getValue(v);
+                Float b = (Float) this.right.getValue(v);
+
+                Float ret = applyOp(a, b, this.binop.op);
+                if(ret != null){
+                    return ret;
+                }
+                return compOp(a,b,this.binop.op);
+            }
+            else if(leftS.equals("string")){
+                String a = (String) this.left.getValue(v);
+                String b = (String) this.right.getValue(v);
+
+                if(this.binop.op.equals("+")){
+                    return a+b;
+                }else{
+                    return compOp(a,b,this.binop.op); //assuming we can't do any arithmetic
+                }
+            }
+            else if(leftS.equals("char")){
+                Character a = (Character) this.left.getValue(v);
+                Character b = (Character) this.right.getValue(v);
+
+                return compOp(a, b, this.binop.op);
+            }
+            else if(leftS.equals("bool")){
+                Boolean a = (Boolean) this.left.getValue(v);
+                Boolean b = (Boolean) this.right.getValue(v);
+                return compOp(a,b,this.binop.op);
+            }
+        }
+        else if((leftS.equals("int") || leftS.equals("float") )&& (rightS.equals("float") || rightS.equals("int"))){
+            Float a = (Float) this.left.getValue(v);
+            Float b = (Float) this.right.getValue(v);
+
+            Float ret = applyOp(a, b, this.binop.op);
+            if(ret != null){
+                return ret;
+            }
+            return compOp(a,b,this.binop.op);
+        }
+        else if((leftS.equals("int") || leftS.equals("bool") )&& (rightS.equals("int") || rightS.equals("bool"))){
+            Boolean a = (Boolean) this.left.getValue(v);
+            Boolean b = (Boolean) this.right.getValue(v);
+
+            return compOp(a,b,this.binop.op);
+        }
+        return null; //Something fd up
     }
 }

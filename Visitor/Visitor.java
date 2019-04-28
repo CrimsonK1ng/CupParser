@@ -59,5 +59,7 @@ interface Visitor {
     public void visit( ParameterArgsAST a );
     public void exit();
     public SymTableEntry lookup(String name);
+    public SymTableEntry lookup(MethoddeclsAST m);
     public SymTableEntry lookup(ArrayList<String> names);
+    public void updateEntry(String name, Object val);
 }

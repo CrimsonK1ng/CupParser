@@ -1,0 +1,9 @@
+class prog{
+    void main (){
+        if(true){
+            print("Oh please god");
+            return;
+        }
+        print("Work");
+    }
+}

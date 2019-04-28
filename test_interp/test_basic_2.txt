@@ -1,0 +1,5 @@
+class prog{
+    void main(){
+        print("Gonna", "see", "iff", "my", "list", "works", 2);
+    }
+}
