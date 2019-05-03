@@ -1,0 +1,9 @@
+class prog{
+    int test(){
+        return 23;
+    }
+
+    void main(){
+        print(test());
+    }
+}

@@ -20,6 +20,7 @@ class ReturnSimpleExprAST extends ReturnsimpleAST implements AST{
         return this.expr.getType(e);
     }
     public Object getValue(Visitor v){
-        throw new ReturnValueException(this.expr.getValue(v));//More abuse
+        Object o = this.expr.getValue(v);
+        throw new ReturnValueException(o);//More abuse
     }
 }

@@ -21,7 +21,7 @@ class SimpleReadlistAST extends SimplestateAST implements AST{
         return this.rlist.getType(e);
     }
     public Object getValue(Visitor v){
-        //TODO ummm no way hosay;
+        rlist.getValue(v);
         return null;
     }
 }

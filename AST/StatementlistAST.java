@@ -39,6 +39,9 @@ class StatementlistAST extends SimpleMethods implements AST{
                     String.format("Return type conflict %s %s", ret, temp)
                 );
             }
+            else{
+                ret = temp;
+            }
             cur = cur.slist;
         }
         if(ret.isEmpty())

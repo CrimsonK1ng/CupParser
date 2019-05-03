@@ -26,9 +26,18 @@ public class Main {
         program = (ProgramAST) parser.parse().value;  // parse
         ASTVisitor visitor = new ASTVisitor();
         program.accept(visitor);
+        //Build symbol table
         visitor.printGST();
+
         TCVisitor tc = new TCVisitor(visitor.getGST());
+        //Type check
         program.accept(tc);
+        //Print AST
+        System.out.println(program);
+
+        System.out.println("---------Program Output---------");
+        IntVisitor iv = new IntVisitor(visitor.getGST());
+        program.accept(iv);
     }
     catch (MultiplyDeclaredException e){
         e.printStackTrace();
@@ -36,8 +45,6 @@ public class Main {
     catch (Exception e) {
         e.printStackTrace();
     }
-
-    System.out.print(program);
 
   }
 

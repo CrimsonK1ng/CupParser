@@ -28,9 +28,15 @@ class WhileclosedAST extends ClosedstateAST implements AST{
             ));
     }
     public Object getValue(Visitor v){
-        while((Boolean) this.expr.getValue(v)){
-            System.out.println("WhileClosed :(");
-            this.close.getValue(v);
+        if(this.expr.getType(v) == "int"){
+            while((Integer) this.expr.getValue(v) > 0){
+                this.close.getValue(v);
+            }
+        }
+        else{
+            while((Boolean) this.expr.getValue(v)){
+                this.close.getValue(v);
+            }
         }
         return null;
     }

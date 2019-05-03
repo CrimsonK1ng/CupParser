@@ -1,0 +1,19 @@
+class prog{
+    int i = 23;
+
+    int test(){
+        gettingCrazy(true);
+        return i;
+    }
+
+    void gettingCrazy(bool t){
+        if(t){
+            print("Holy moly");
+        }
+    }
+
+    void main(){
+        print(test());
+    }
+
+}

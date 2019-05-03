@@ -1,0 +1,24 @@
+class prog 
+	function void main_
+		bool d
+		int i
+		statement statement_body_1460313337 
+
+
+
+class prog {
+	void main (  ) {
+		int i = 0;
+		bool d = false;
+		read ( i );
+		read ( d );
+		print ( i );
+		if ( d )
+		{
+			print ( "True" );
+		}
+	}
+}
+---------Program Output---------
+Input for i of type int: Input for i of type int: Input for d of type bool: 123
+True

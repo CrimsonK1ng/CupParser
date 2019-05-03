@@ -21,7 +21,6 @@ class SimplePrintlistAST extends SimplestateAST implements AST{
     }
     public Object getValue(Visitor v){
         this.plist.getValue(v);
-        System.out.println("Printlist");
         return null;
     }
 }

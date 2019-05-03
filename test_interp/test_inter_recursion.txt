@@ -1,0 +1,12 @@
+class prog{
+    void main(){
+        int i = 10;
+        print("The factorial of ", i, " is ", factorial(i));
+    }
+    int factorial(int start){
+        if(start == 0){
+            return 1;
+        }
+        return (start * factorial(start - 1));
+    }
+}

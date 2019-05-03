@@ -1,0 +1,9 @@
+class prog{
+    void main(){
+        int i;
+
+        print("Gimme an int");
+        read(i);
+        print(i);
+    }
+}

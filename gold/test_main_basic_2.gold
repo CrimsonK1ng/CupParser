@@ -1,0 +1,12 @@
+class prog 
+	function void main_
+
+
+class prog {
+	void main (  ) {
+		print ( "Gonna", "see", "iff", "my", "list", "works", 2 );
+	}
+}
+---------Program Output---------
+MAIN
+Gonna see iff my list works 2

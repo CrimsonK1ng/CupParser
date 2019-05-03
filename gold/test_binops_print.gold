@@ -1,0 +1,22 @@
+class prof 
+	int i
+	function int add_int_int
+		int i
+		int j
+
+	function void main_
+
+
+class prof {
+	int i = 23;
+	int add ( int i, int j  ) {
+		return (i + j);
+	}
+	void main (  ) {
+		print ( i + 23 );
+	}
+}
+---------Program Output---------
+MAIN
+46
+Printlist

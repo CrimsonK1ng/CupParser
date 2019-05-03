@@ -1,0 +1,22 @@
+class prog 
+	function void main_
+		statement statement_body_-294213849 
+
+		statement statement_body_683674563 
+
+
+
+class prog {
+	void main (  ) {
+		if ( false )
+		{
+			print ( "Halleluja" );
+		}
+		else
+		{
+			print ( "Ummmmm" );
+		}
+	}
+}
+---------Program Output---------
+Ummmmm

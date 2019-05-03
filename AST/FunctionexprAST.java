@@ -5,6 +5,7 @@ class FunctionexprAST extends ExprAST implements AST{
 
     public FunctionexprAST(IdentAST id){
         this.id= id;
+        this.args = null;
     }
 
     public FunctionexprAST(IdentAST id, ParameterArgsAST args){
@@ -16,7 +17,8 @@ class FunctionexprAST extends ExprAST implements AST{
 
     public void accept(Visitor v){
         this.id.accept(v);
-        this.args.accept(v);
+        if(this.args != null)
+            this.args.accept(v);
         v.visit(this);
     }
 
@@ -28,7 +30,7 @@ class FunctionexprAST extends ExprAST implements AST{
         }
     }
 
-    public String getType(Visitor e) throws TypeConflictException{
+    public ArrayList<String> getSymName(Visitor e){
         String name = this.id.name;
         ArrayList<String> arg_list = new ArrayList<String>();
         ParameterArgsAST pargs = this.args;
@@ -56,7 +58,14 @@ class FunctionexprAST extends ExprAST implements AST{
             }
             pargs = pargs.next_arg;
         }
-        SymTableEntry entry = e.lookup(arg_list);
+        if(arg_list.isEmpty()){
+            arg_list.add(name + "_");
+        }
+        return arg_list;
+    }
+
+    public String getType(Visitor e) throws TypeConflictException{
+        SymTableEntry entry = e.lookup(getSymName(e));
         if(entry != null){
             return entry.type.getType();
         }
@@ -64,6 +73,16 @@ class FunctionexprAST extends ExprAST implements AST{
         return null;
     }
     public Object getValue(Visitor v) {
+        SymTableFunctionEntry entry = (SymTableFunctionEntry) v.lookup(getSymName(v));
+        ArrayList<Object> arg_list = new ArrayList<Object>();
+        ParameterArgsAST cur = this.args;
+        while(cur != null){
+            arg_list.add(cur.expr.getValue(v));
+            cur = cur.next_arg;
+        }
+        if(entry != null){
+            return entry.decl.getValue(v, arg_list);
+        }
         return null;
     }
 }

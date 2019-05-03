@@ -1,0 +1,20 @@
+class prog 
+	function void main_
+		statement statement_body_345484553 
+
+
+
+class prog {
+	void main (  ) {
+		if ( true )
+		{
+			print ( "Oh please god" );
+			return;
+		}
+		print ( "Work" );
+	}
+}
+---------Program Output---------
+MAIN
+"Oh please god"
+Printlist

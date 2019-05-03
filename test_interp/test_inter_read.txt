@@ -1,0 +1,14 @@
+class prog{
+
+    void main(){
+        int i = 0;
+        bool d = false;
+        read(i);
+        read(d);
+
+        print(i);
+        if(d){
+            print("True");
+        }
+    }
+}

@@ -52,6 +52,10 @@ class ArgdeclsAST implements AST{
 
     }
 
+    public void updateSymTableArg(Visitor v, Object val){
+        this.arg.updateSymTableValue(v, val);
+    }
+
     public String getType(Visitor e) throws TypeConflictException{
         return "";
     }

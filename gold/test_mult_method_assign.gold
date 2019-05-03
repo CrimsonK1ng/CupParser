@@ -1,0 +1,22 @@
+class prog 
+	int i
+	function int main2_int
+		int newInt
+
+	function void main_
+
+
+class prog {
+	int i = 23;
+	int main2 ( int newInt  ) {
+		return (newInt + 234);
+	}
+	void main (  ) {
+		print ( i );
+		i = main2 (54);
+		print ( i );
+	}
+}
+---------Program Output---------
+23
+288

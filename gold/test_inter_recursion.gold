@@ -1,0 +1,25 @@
+class prog 
+	function void main_
+		int i
+
+	function int factorial_int
+		int start
+		statement statement_body_-1984484354 
+
+
+
+class prog {
+	void main (  ) {
+		int i = 10;
+		print ( "The factorial of ", i, " is ", factorial (i) );
+	}
+	int factorial ( int start  ) {
+		if ( start == 0 )
+		{
+			return 1;
+		}
+		return (start * factorial (start - 1));
+	}
+}
+---------Program Output---------
+The factorial of  10  is  3628800

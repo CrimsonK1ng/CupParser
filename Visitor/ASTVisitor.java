@@ -83,12 +83,14 @@ class ASTVisitor implements Visitor{
         if(a.returns.isvoid){
             this.gst.addEntry(new SymTableFunctionEntry(
                 String.format("%s_%s",a.ident.name, method_args),
-                getSymType("")
+                getSymType(""),
+                a
             ));
         } else {
             this.gst.addEntry(new SymTableFunctionEntry(
                 String.format("%s_%s",a.ident.name, method_args),
-                getSymType(a.returns.type.type)
+                getSymType(a.returns.type.type),
+                a
             ));
         }
 

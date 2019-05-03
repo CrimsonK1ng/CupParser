@@ -1,0 +1,58 @@
+class big{
+    float pi = 3.1415;
+        
+    void main(){
+        int next = 2 * 5;
+        while( next ){
+            print(next);
+            if(next == 4){
+                print("Hey we are at 4");
+            }
+            if(true){
+                if(next == 2){
+                    print("Nesting works");
+                }
+            }
+            print(next, pi);
+            dothemath(next, pi);
+            next = next - 1;
+        }
+    }
+
+
+    float dothemath(int i, float j){
+        if((i*j) > 0){
+            print("OH EM GEEE", (i*j));
+            if((i*j) > 20){
+                print("Deeeeperrr");
+                if((i*j) > 30)
+                    print("DEEEEEEPPPPERRRRR");
+            }
+            letsGoDeeper(4);
+        }
+        return (i*j);
+    }
+
+    int letsGoDeeper(int a){
+        print("Check my recursion", a);
+        print(gettingCrazyNow(a));
+        if(a == 0){
+            return 0;
+        }
+        return letsGoDeeper(a-1);
+    }
+
+
+    char gettingCrazyNow(int a){
+        if(a == 4)
+            return 'C';
+        if(a == 3)
+            return 'O';
+        if(a == 2)
+            return 'O';
+        if(a == 1)
+            return 'O';
+        if(a == 0)
+            return 'L';
+    }
+}

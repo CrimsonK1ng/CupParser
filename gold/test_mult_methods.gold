@@ -1,0 +1,16 @@
+class prog 
+	function int test_
+
+	function void main_
+
+
+class prog {
+	int test (  ) {
+		return 23;
+	}
+	void main (  ) {
+		print ( test () );
+	}
+}
+---------Program Output---------
+23

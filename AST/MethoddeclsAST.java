@@ -1,3 +1,4 @@
+import java.util.*;
 class MethoddeclsAST extends SimpleMethods implements AST{
     ReturntypeAST returns;
     IdentAST ident;
@@ -58,6 +59,7 @@ class MethoddeclsAST extends SimpleMethods implements AST{
     }
     public Object getValue(Visitor v){
         //v.lookup(this);
+        v.lookup(this);
         try{
             if(this.returns.isvoid){
                 this.method.getValue(v);
@@ -68,6 +70,58 @@ class MethoddeclsAST extends SimpleMethods implements AST{
             return e.value;
         } catch(ReturnException e){
             //optional return;
+            return null;
+        }
+    }
+
+    public Object getValue(Visitor v, ParameterArgsAST args){
+        v.lookup(this);
+        try{
+            ArgdeclsAST meth_args = this.method.arglist;
+            ParameterArgsAST cur_pargs = args;
+
+            while(meth_args != null && cur_pargs != null){
+                meth_args.updateSymTableArg(v, cur_pargs.expr.getValue(v));
+                meth_args = meth_args.arglist;
+                cur_pargs = cur_pargs.next_arg;
+            }
+
+            if(this.returns.isvoid){
+                this.method.getValue(v);
+                return null;
+            }
+            return this.method.getValue(v);
+        } catch(ReturnValueException e) {
+            return e.value;
+        } catch(ReturnException e){
+            //optional return;
+            return null;
+        }
+    }
+
+    public Object getValue(Visitor v, ArrayList<Object> args){
+        v.lookup(this);
+        try{
+            ArgdeclsAST meth_args = this.method.arglist;
+            int iter = 0;
+            while(meth_args != null && iter < args.size()){
+                meth_args.updateSymTableArg(v, args.get(iter));
+                meth_args = meth_args.arglist;
+                iter++;
+            }
+
+            if(this.returns.isvoid){
+                this.method.getValue(v);
+                return null;
+            }
+            this.method.getValue(v);
+            return null;
+        } catch(ReturnValueException e) {
+            v.exit();
+            return e.value;
+        } catch(ReturnException e){
+            //optional return;
+            v.exit();
             return null;
         }
     }

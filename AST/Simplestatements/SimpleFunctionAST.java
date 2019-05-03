@@ -26,7 +26,11 @@ class SimpleFunctionAST extends SimplestateAST implements AST{
         return null; //This should throw an exception. NULL IS HERE IN CASE
     }
     public Object getValue(Visitor v){
-        //TODO not gonna deal with this
-        return null;
+        SymTableFunctionEntry entry = (SymTableFunctionEntry) v.lookup(this.id.name + "_");
+        System.out.println("VOID");
+        if(entry != null){
+            entry.decl.getValue(v); //TODO make sure void stuff runs
+        }
+        return null; //This should throw an exception. NULL IS HERE IN CASE
     }
 }

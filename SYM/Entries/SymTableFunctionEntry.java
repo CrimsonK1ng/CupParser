@@ -1,9 +1,15 @@
 import java.util.*;
 class SymTableFunctionEntry extends SymTableEntry{
     public ArrayList<SymTableEntry> params; //Variable length list of parameters
+    MethoddeclsAST decl;
     public SymTableFunctionEntry(String name, SymType type){
         super(name, type);
         this.table = new SymTable();
+    }
+    public SymTableFunctionEntry(String name, SymType type, MethoddeclsAST dec){
+        super(name, type);
+        this.table = new SymTable();
+        this.decl = dec;
     }
     public SymTableFunctionEntry(String name, SymType type, SymTableEntry parent){
         super(name, type);

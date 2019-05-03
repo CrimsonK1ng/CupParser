@@ -1,0 +1,31 @@
+class prog 
+	int i
+	function int test_
+
+	function void gettingCrazy_bool
+		bool t
+		statement statement_body_-889215850 
+
+
+	function void main_
+
+
+class prog {
+	int i = 23;
+	int test (  ) {
+		gettingCrazy ( true );
+		return i;
+	}
+	void gettingCrazy ( bool t  ) {
+		if ( t )
+		{
+			print ( "Holy moly" );
+		}
+	}
+	void main (  ) {
+		print ( test () );
+	}
+}
+---------Program Output---------
+Holy moly
+23

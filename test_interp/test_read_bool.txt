@@ -1,0 +1,9 @@
+class prog{
+    void main(){
+        bool i;
+
+        print("Gimme a bool");
+        read(i);
+        print(i);
+    }
+}

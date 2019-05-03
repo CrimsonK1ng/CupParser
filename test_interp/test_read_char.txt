@@ -1,0 +1,8 @@
+class prog{
+    void main(){
+        char i;
+        print("What char would you want to print?");
+        read(i);
+        print(i);
+    }
+}

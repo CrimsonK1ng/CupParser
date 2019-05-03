@@ -26,6 +26,11 @@ class ArgAST implements AST{
     public String getType(){
         return this.type.type;
     }
+
+    public void updateSymTableValue(Visitor v, Object val){
+        v.updateEntry(this.id.name, val);
+    }
+
     public Object getValue(Visitor v){
         return null;
     }

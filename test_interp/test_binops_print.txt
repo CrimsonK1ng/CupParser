@@ -1,0 +1,10 @@
+class prof{
+    int i = 23;
+
+    int add(int i, int j){
+        return (i+j);
+    }
+    void main(){
+        print(i+23);
+    }
+}

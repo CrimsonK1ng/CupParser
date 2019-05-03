@@ -292,8 +292,20 @@ class BinaryexprAST extends ExprAST implements AST{
             }
         }
         else if((leftS.equals("int") || leftS.equals("float") )&& (rightS.equals("float") || rightS.equals("int"))){
-            Float a = (Float) this.left.getValue(v);
-            Float b = (Float) this.right.getValue(v);
+            Float a;
+            Float b;
+            try{
+                a = (float) this.left.getValue(v);
+            }catch(Exception e){
+                int i = (Integer) this.left.getValue(v);
+                a = (float) i;
+            }
+            try{
+                b = (float) this.right.getValue(v);
+            }catch(Exception e){
+                int i = (Integer) this.right.getValue(v);
+                b = (float) i;
+            }
 
             Float ret = applyOp(a, b, this.binop.op);
             if(ret != null){

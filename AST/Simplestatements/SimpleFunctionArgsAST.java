@@ -22,7 +22,8 @@ class SimpleFunctionArgsAST extends SimplestateAST implements AST{
     public String toString(int indent){
         return(getBase(indent) + String.format("%s ( %s );", this.id, this.args));
     }
-    public String getType(Visitor e){
+
+    public ArrayList<String> getSymName(Visitor e){
         String name = this.id.name;
         ArrayList<String> arg_list = new ArrayList<String>();
         ParameterArgsAST pargs = this.args;
@@ -50,8 +51,14 @@ class SimpleFunctionArgsAST extends SimplestateAST implements AST{
             }
             pargs = pargs.next_arg;
         }
+        if(arg_list.isEmpty()){
+            arg_list.add(name + "_");
+        }
+        return arg_list;
+    }
+    public String getType(Visitor e){
 
-        SymTableEntry entry = e.lookup(arg_list);
+        SymTableEntry entry = e.lookup(getSymName(e));
         if(entry != null){
             return "";//entry.type.getType();
         }
@@ -60,6 +67,16 @@ class SimpleFunctionArgsAST extends SimplestateAST implements AST{
     }
     public Object getValue(Visitor v){
         //Not gonna deal with this right now.
+        SymTableFunctionEntry entry = (SymTableFunctionEntry) v.lookup(getSymName(v));
+        ArrayList<Object> arg_list = new ArrayList<Object>();
+        ParameterArgsAST cur = this.args;
+        while(cur != null){
+            arg_list.add(cur.expr.getValue(v));
+            cur = cur.next_arg;
+        }
+        if(entry != null){
+            return entry.decl.getValue(v, arg_list);
+        }
         return null;
     }
 }

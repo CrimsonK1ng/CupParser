@@ -1,0 +1,19 @@
+class prog 
+	char a
+	int i
+	function void main_
+		int i
+
+
+class prog {
+	int i = 123;
+	char a = 'a';
+	void main (  ) {
+		int i = 5454;
+		print ( i, a );
+	}
+}
+---------Program Output---------
+MAIN
+5454 a
+Printlist

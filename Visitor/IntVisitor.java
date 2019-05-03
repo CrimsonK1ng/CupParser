@@ -11,9 +11,10 @@ class IntVisitor implements Visitor{
             when exit() is called we make the cur go to it's parent
     */
     private GlobalSymbolTable gst;
-    private SymTableEntry cur;
+    private Stack<SymTableEntry> previousScope;
     public IntVisitor(GlobalSymbolTable g){
         this.gst = g;
+        this.previousScope = new Stack<SymTableEntry>();
     }
 
     public void visit( ProgramAST a ){
@@ -51,7 +52,6 @@ class IntVisitor implements Visitor{
     public void visit( MethoddeclsAST a ){
         this.gst.lookup(a);
         if(a.ident.name.equals("main") && a.returns.isvoid){
-            System.out.println("MAIN");
             a.getValue(this);
         }
     }
@@ -83,7 +83,6 @@ class IntVisitor implements Visitor{
 
     }
     public void visit( SimpleBodyAST a ){
-        this.cur = this.gst.lookup(a);
     }
     public void visit( SimpleFunctionArgsAST a ){
 
@@ -188,7 +187,18 @@ class IntVisitor implements Visitor{
     }
 
     public void exit(){
-        this.gst.exit();
+        /*
+        System.out.println(this.gst);
+        System.out.println("GSDF");
+        for(SymTableEntry e : this.gst.curtable.table){
+            System.out.println(e.name);
+        }
+        */
+
+        if(this.previousScope.size() > 0){
+            this.gst.cur_entry = this.previousScope.pop();
+            this.gst.curtable = this.gst.cur_entry.table;
+        }
     }
 
     public SymTableEntry lookup(String name){
@@ -197,6 +207,7 @@ class IntVisitor implements Visitor{
     }
 
     public SymTableEntry lookup(MethoddeclsAST a){
+        this.previousScope.push(this.gst.cur_entry);
         return this.gst.lookup(a);
     }
 
